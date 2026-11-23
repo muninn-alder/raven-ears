@@ -1,0 +1,18 @@
+-r requirements.txt
+# FIRST install matching CPU torch + torchaudio wheels; see INSTALL.md.
+# A bare Linux PyPI torch install can otherwise pull CUDA dependencies.
+torch>=2.6; sys_platform != 'darwin' or platform_machine != 'x86_64'
+torchaudio>=2.6; sys_platform != 'darwin' or platform_machine != 'x86_64'
+torch>=2.2,<2.3; sys_platform == 'darwin' and platform_machine == 'x86_64'
+torchaudio>=2.2,<2.3; sys_platform == 'darwin' and platform_machine == 'x86_64'
+demucs==4.1.0
+beat-this>=1,<2
+panns_inference==0.1.1
+# Transformers 5 needs Torch >=2.6; Intel macOS must keep Demucs' Torch <2.3.
+transformers>=4.40,<6; sys_platform != 'darwin' or platform_machine != 'x86_64'
+transformers>=4.40,<4.50; sys_platform == 'darwin' and platform_machine == 'x86_64'
+huggingface_hub>=0.23
+mutagen>=1.47
+# Optional QUALITY upgrade (GPL-3.0-or-later): pip install praat-parselmouth
+# Optional evaluation comparison: pip install mir_eval
+# Optional madmom key voter: isolated venv, pinned revision in INSTALL.md.

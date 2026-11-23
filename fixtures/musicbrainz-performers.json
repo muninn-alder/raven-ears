@@ -1,0 +1,1324 @@
+{
+  "Take Five": {
+    "search": {
+      "id": "3aa9460f-9c0f-4b2a-85b1-71b14c3f131f",
+      "title": "Take Five",
+      "artist-credit": [
+        {
+          "name": "The Dave Brubeck Quartet"
+        }
+      ],
+      "score": 100,
+      "releases": [
+        {
+          "id": "5f6cc5ba-7558-4a26-8815-6fa8f1c653b3",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        }
+      ],
+      "length": 324000
+    },
+    "recording": {
+      "id": "3aa9460f-9c0f-4b2a-85b1-71b14c3f131f",
+      "title": "Take Five",
+      "relations": [
+        {
+          "type": "performer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "name": "The Dave Brubeck Quartet",
+            "id": "7bf711e9-4e69-4e08-b6e8-c0cb5805f1e7",
+            "type": "Group"
+          }
+        }
+      ]
+    }
+  },
+  "Strawberry Fields Forever": {
+    "search": {
+      "id": "6c322706-aa5d-4c18-b43d-13a5e8deb0ac",
+      "title": "Strawberry Fields Forever",
+      "artist-credit": [
+        {
+          "name": "The Beatles"
+        }
+      ],
+      "score": 100,
+      "releases": [
+        {
+          "id": "838e39d8-a36b-4c2b-b673-031fdc53ba42",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "d7f4b71e-ae40-425e-84fd-7c27fa7f55d6",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "4415851c-b9b3-4bc5-95f6-0e2108a859e6",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "838e39d8-a36b-4c2b-b673-031fdc53ba42",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "471b6606-6807-4125-9a63-aa6eb35d9496",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        }
+      ],
+      "length": 259000
+    },
+    "recording": {
+      "id": "6c322706-aa5d-4c18-b43d-13a5e8deb0ac",
+      "title": "Strawberry Fields Forever",
+      "relations": [
+        {
+          "type": "conductor",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "26fa8b67-6c7f-406c-ad64-a1d070092df2",
+            "type": "Person",
+            "name": "George Martin"
+          }
+        },
+        {
+          "type": "engineer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "name": "Geoff Emerick",
+            "type": "Person",
+            "id": "3ff7a3d9-a800-4de4-94a6-41a35c96c0ae"
+          }
+        },
+        {
+          "type": "engineer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "21a49119-f4ee-4fcf-9b5e-5f653113e977",
+            "type": "Person",
+            "name": "Dave Harries"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "electric guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "George Harrison",
+            "id": "42a8f507-8412-4611-854f-926571049fa0",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "electric guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "John Lennon",
+            "type": "Person",
+            "id": "4d5447d7-c61c-4120-ba1b-d7f471d385b9"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "bass guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Paul McCartney",
+            "type": "Person",
+            "id": "ba550d0e-adac-4864-b88b-407cab5e76af"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "mellotron"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "ba550d0e-adac-4864-b88b-407cab5e76af",
+            "name": "Paul McCartney"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "drums (drum set)"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Ringo Starr",
+            "id": "300c4c73-33ac-4255-9d57-4e32627f5e13",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "percussion"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "42a8f507-8412-4611-854f-926571049fa0",
+            "type": "Person",
+            "name": "George Harrison"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "percussion"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "4d5447d7-c61c-4120-ba1b-d7f471d385b9",
+            "type": "Person",
+            "name": "John Lennon"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "percussion"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Paul McCartney",
+            "type": "Person",
+            "id": "ba550d0e-adac-4864-b88b-407cab5e76af"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "drums (drum set)"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Ringo Starr",
+            "id": "300c4c73-33ac-4255-9d57-4e32627f5e13",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "swarmandal"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "George Harrison",
+            "id": "42a8f507-8412-4611-854f-926571049fa0",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Paul McCartney",
+            "type": "Person",
+            "id": "ba550d0e-adac-4864-b88b-407cab5e76af"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "trumpet"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "fa24f3fb-e813-4ef2-bbdc-56239b2349b3",
+            "name": "Greg Bowen"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "trumpet"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Tony Fisher",
+            "type": "Person",
+            "id": "2136b56c-2bb4-42d1-8a6b-83fc646a55d1"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "swarmandal"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "George Harrison",
+            "type": "Person",
+            "id": "42a8f507-8412-4611-854f-926571049fa0"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "cello"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Norman Jones",
+            "id": "17ee462b-d251-40f6-96dd-8605114e851a",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "trumpet"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "c54f0616-c92a-41a3-a261-09bbad395811",
+            "type": "Person",
+            "name": "Stan Roderick"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "cello"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "ab6ce138-98d3-44cb-8958-7099d16cce19",
+            "name": "Derek Simpson"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "trumpet"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Derek Watkins",
+            "id": "0905529e-d273-4f50-bce1-cb8efbf03d0d",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "producer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "21a49119-f4ee-4fcf-9b5e-5f653113e977",
+            "type": "Person",
+            "name": "Dave Harries"
+          }
+        },
+        {
+          "type": "producer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "26fa8b67-6c7f-406c-ad64-a1d070092df2",
+            "type": "Person",
+            "name": "George Martin"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [
+            "lead vocals"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "John Lennon",
+            "type": "Person",
+            "id": "4d5447d7-c61c-4120-ba1b-d7f471d385b9"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "name": "John Lennon",
+            "id": "4d5447d7-c61c-4120-ba1b-d7f471d385b9",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [
+            "lead vocals"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "John Lennon",
+            "id": "4d5447d7-c61c-4120-ba1b-d7f471d385b9",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "performance",
+          "attributes": [],
+          "target-type": "work"
+        }
+      ]
+    },
+    "expected_entries": [
+      {
+        "who": "George Harrison",
+        "words": [
+          "electric guitar",
+          "percussion",
+          "swarmandal"
+        ],
+        "classes": [
+          "electric guitar",
+          "drums"
+        ]
+      },
+      {
+        "who": "John Lennon",
+        "words": [
+          "electric guitar",
+          "percussion",
+          "lead vocals",
+          "vocals"
+        ],
+        "classes": [
+          "electric guitar",
+          "drums",
+          "vocals"
+        ]
+      },
+      {
+        "who": "Paul McCartney",
+        "words": [
+          "bass guitar",
+          "mellotron",
+          "percussion",
+          "guitar"
+        ],
+        "classes": [
+          "bass guitar",
+          "synth",
+          "drums",
+          "guitar"
+        ]
+      },
+      {
+        "who": "Ringo Starr",
+        "words": [
+          "drums (drum set)"
+        ],
+        "classes": [
+          "drums"
+        ]
+      },
+      {
+        "who": "Greg Bowen",
+        "words": [
+          "trumpet"
+        ],
+        "classes": [
+          "brass"
+        ]
+      },
+      {
+        "who": "Tony Fisher",
+        "words": [
+          "trumpet"
+        ],
+        "classes": [
+          "brass"
+        ]
+      },
+      {
+        "who": "Norman Jones",
+        "words": [
+          "cello"
+        ],
+        "classes": [
+          "strings"
+        ]
+      },
+      {
+        "who": "Stan Roderick",
+        "words": [
+          "trumpet"
+        ],
+        "classes": [
+          "brass"
+        ]
+      },
+      {
+        "who": "Derek Simpson",
+        "words": [
+          "cello"
+        ],
+        "classes": [
+          "strings"
+        ]
+      },
+      {
+        "who": "Derek Watkins",
+        "words": [
+          "trumpet"
+        ],
+        "classes": [
+          "brass"
+        ]
+      }
+    ]
+  },
+  "Twilight of the Thunder God": {
+    "search": {
+      "id": "40681ecd-21c6-4ae8-9de2-2f693bcf8e67",
+      "title": "Twilight of the Thunder God",
+      "artist-credit": [
+        {
+          "name": "Amon Amarth"
+        }
+      ],
+      "score": 100,
+      "releases": [
+        {
+          "id": "cd123e47-6e6e-47f3-be80-bd2b175b09f8",
+          "status": "Bootleg",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "afc2906a-74f6-4e3c-9112-fc087e908b3a",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "116f8b58-6414-4d7c-82be-45b6cb52e48f",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "6dfb6f6f-d52d-42f4-8f24-04ec35537a9d",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "f2fde865-dbb7-4026-ac6d-0e1ae64cd862",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "a46d09c9-abf1-471d-add8-99378b9b3e23",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "52c252bf-52b6-499f-acdf-8a94dc12cea6",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "cf2c9662-18ca-4e22-ac83-f5c101d93e67",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "fa54d5bd-e2c4-3c66-832f-07955f9e4c06",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "4dd7ecf5-1df6-4352-9671-6afacfd60da9",
+          "status": "Promotion",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "a2c7c92d-38fd-486a-abaa-f663fe9a543d",
+          "status": "Promotion",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "c221557d-26db-4a45-83cf-5918637542a6",
+          "status": "Promotion",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "96cf1767-5939-3713-9986-98979c3bcc1e",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "3b2884ea-51d5-381a-94de-ab94989d94d6",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "314a75c2-e0f7-3c47-a4a9-3c91b6f1967a",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "c151f978-f13b-3ee7-81de-28b2c5a27c47",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "f3dcbc5e-82b5-38fc-b4be-9f979c295da4",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "7db4cb3f-0617-41c5-907e-4e533a2fd090",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "635d4f84-83eb-490c-a8b3-71f38b1c5794",
+          "status": "Promotion",
+          "release-group": {
+            "primary-type": "Album",
+            "secondary-types": [
+              "Compilation"
+            ]
+          }
+        },
+        {
+          "id": "0506e680-2e3e-44e5-9d06-bb2571062248",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        }
+      ],
+      "length": 248746
+    },
+    "recording": {
+      "id": "40681ecd-21c6-4ae8-9de2-2f693bcf8e67",
+      "title": "Twilight of the Thunder God",
+      "relations": [
+        {
+          "type": "engineer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "name": "Jens Bogren",
+            "id": "ea6d35db-e4d6-4efc-8e9d-d970172d5329"
+          }
+        },
+        {
+          "type": "engineer",
+          "attributes": [
+            "assistant"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Dennis Israel",
+            "id": "f4f0d0f6-a979-480b-a065-9c7ea0a895bc",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "drums (drum set)"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "d53847a7-74fe-4997-9fce-315ddb38953d",
+            "name": "Fredrik Andersson"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "guest",
+            "guitar",
+            "solo"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "2da4a27e-225d-4699-9821-f94d18b13173",
+            "name": "Roope Latvala"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "bass guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "name": "Ted Lundström",
+            "id": "7c62dbe9-8ba6-43d6-a8b9-cc5a0527ecad"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Olavi Mikkonen",
+            "id": "b48a158c-9640-4581-90f5-8a1d52578737",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "brass",
+            "guest",
+            "horn"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "df80feba-b468-47a0-be98-49740dc0faaf",
+            "name": "Ronny Milianowicz",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "name": "Johan Söderberg",
+            "id": "9f0baef2-5184-4b62-81d5-2df4d888ef7e"
+          }
+        },
+        {
+          "type": "mix",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "name": "Jens Bogren",
+            "id": "ea6d35db-e4d6-4efc-8e9d-d970172d5329"
+          }
+        },
+        {
+          "type": "producer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "ea6d35db-e4d6-4efc-8e9d-d970172d5329",
+            "name": "Jens Bogren"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [
+            "choir vocals",
+            "guest"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "0e0563ae-86d9-4259-aa9c-61173281a665",
+            "name": "Ulf Bejstam",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "id": "e38013cf-86be-45ad-a842-af8a4dd9150d",
+            "name": "Johan Hegg"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [
+            "choir vocals",
+            "guest"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "df80feba-b468-47a0-be98-49740dc0faaf",
+            "name": "Ronny Milianowicz",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "performance",
+          "attributes": [],
+          "target-type": "work"
+        }
+      ]
+    },
+    "expected_entries": [
+      {
+        "who": "Fredrik Andersson",
+        "words": [
+          "drums (drum set)"
+        ],
+        "classes": [
+          "drums"
+        ]
+      },
+      {
+        "who": "Roope Latvala",
+        "words": [
+          "guitar"
+        ],
+        "classes": [
+          "guitar"
+        ]
+      },
+      {
+        "who": "Ted Lundström",
+        "words": [
+          "bass guitar"
+        ],
+        "classes": [
+          "bass guitar"
+        ]
+      },
+      {
+        "who": "Olavi Mikkonen",
+        "words": [
+          "guitar"
+        ],
+        "classes": [
+          "guitar"
+        ]
+      },
+      {
+        "who": "Ronny Milianowicz",
+        "words": [
+          "brass",
+          "horn",
+          "choir vocals"
+        ],
+        "classes": [
+          "brass",
+          "vocals"
+        ]
+      },
+      {
+        "who": "Johan Söderberg",
+        "words": [
+          "guitar"
+        ],
+        "classes": [
+          "guitar"
+        ]
+      },
+      {
+        "who": "Ulf Bejstam",
+        "words": [
+          "choir vocals"
+        ],
+        "classes": [
+          "vocals"
+        ]
+      },
+      {
+        "who": "Johan Hegg",
+        "words": [
+          "vocals"
+        ],
+        "classes": [
+          "vocals"
+        ]
+      }
+    ]
+  },
+  "Tolerate It": {
+    "search": {
+      "id": "6eec701e-a0a2-4532-8708-14ecc08fdb8f",
+      "title": "tolerate it",
+      "artist-credit": [
+        {
+          "name": "Taylor Swift"
+        }
+      ],
+      "score": 100,
+      "releases": [
+        {
+          "id": "4e236bca-7a25-4b06-ac2b-89d8927c3a6f",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "d3d50c07-edbe-4c48-aec7-255dab84f7c5",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "c22c81f7-9c95-4861-9b9a-1342697aa28f",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "657053e4-ff69-4e38-a1e1-a632e201486f",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "a08d9f94-174c-4861-bce3-9553b0fbac4e",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "1146c478-f7a8-47a5-8b24-9a4cc544a685",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "550352b6-8d3d-419a-94d8-20d5dc47ef69",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "5826afa2-72d6-4e4f-8e06-a695478ee065",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "7a316b3d-8130-4fa6-8772-9b4fd0463a9b",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "a8b7a826-db4b-4713-9ccb-6fdbf7229039",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "28a0d486-0f71-4bee-b2b0-31f90ea60599",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "00945de3-0f0c-49ad-9709-0212c672042b",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        },
+        {
+          "id": "84863489-85a7-48d9-9eca-d806e8e5bb58",
+          "status": "Official",
+          "release-group": {
+            "primary-type": "Album"
+          }
+        }
+      ],
+      "length": 245440
+    },
+    "recording": {
+      "id": "6eec701e-a0a2-4532-8708-14ecc08fdb8f",
+      "title": "tolerate it",
+      "relations": [
+        {
+          "type": "instrument",
+          "attributes": [
+            "keyboard"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Aaron Dessner",
+            "type": "Person",
+            "id": "1890e726-4817-42f4-92e7-ca78bef6692a"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "piano"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "name": "Aaron Dessner",
+            "id": "1890e726-4817-42f4-92e7-ca78bef6692a"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "bass guitar"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "1890e726-4817-42f4-92e7-ca78bef6692a",
+            "type": "Person",
+            "name": "Aaron Dessner"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "cello"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Clarice Jensen",
+            "type": "Person",
+            "id": "488e1ce0-8be4-4c77-b023-8097b7994409"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "synthesizer"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "type": "Person",
+            "name": "James McAlister",
+            "id": "167083f8-3aaa-4177-9541-afea93de39a1"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "percussion"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "167083f8-3aaa-4177-9541-afea93de39a1",
+            "type": "Person",
+            "name": "James McAlister"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "keyboard"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "167083f8-3aaa-4177-9541-afea93de39a1",
+            "type": "Person",
+            "name": "James McAlister"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "violin"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Yuki Numata Resnick",
+            "type": "Person",
+            "id": "14bc0713-ec84-47e3-8c9a-89705d664027"
+          }
+        },
+        {
+          "type": "instrument",
+          "attributes": [
+            "percussion"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Jason Treuting",
+            "type": "Person",
+            "id": "ec9eaea1-aa29-49a9-a8b8-d3f2c66103cb"
+          }
+        },
+        {
+          "type": "orchestrator",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "20336142-85de-4e11-a1fd-a6c815b4e583",
+            "type": "Person",
+            "name": "Bryce Dessner"
+          }
+        },
+        {
+          "type": "phonographic copyright",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "20244d07-534f-4eff-b4d4-930878889970",
+            "type": "Person",
+            "name": "Taylor Swift"
+          }
+        },
+        {
+          "type": "producer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "1890e726-4817-42f4-92e7-ca78bef6692a",
+            "name": "Aaron Dessner",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "producer",
+          "attributes": [],
+          "target-type": "artist",
+          "artist": {
+            "id": "20244d07-534f-4eff-b4d4-930878889970",
+            "name": "Taylor Swift",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "programming",
+          "attributes": [
+            "drum machine"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "1890e726-4817-42f4-92e7-ca78bef6692a",
+            "name": "Aaron Dessner",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "programming",
+          "attributes": [
+            "drum machine"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Bryan Devendorf",
+            "type": "Person",
+            "id": "fa293b08-a66d-4eef-8ee5-989aadf5dae8"
+          }
+        },
+        {
+          "type": "programming",
+          "attributes": [
+            "drum machine"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "id": "167083f8-3aaa-4177-9541-afea93de39a1",
+            "name": "James McAlister",
+            "type": "Person"
+          }
+        },
+        {
+          "type": "vocal",
+          "attributes": [
+            "lead vocals"
+          ],
+          "target-type": "artist",
+          "artist": {
+            "name": "Taylor Swift",
+            "type": "Person",
+            "id": "20244d07-534f-4eff-b4d4-930878889970"
+          }
+        },
+        {
+          "type": "performance",
+          "attributes": [],
+          "target-type": "work"
+        }
+      ]
+    },
+    "expected_entries": [
+      {
+        "who": "Aaron Dessner",
+        "words": [
+          "keyboard",
+          "piano",
+          "bass guitar",
+          "drum machine programming"
+        ],
+        "classes": [
+          "keyboard",
+          "piano",
+          "bass guitar",
+          "drum machine"
+        ]
+      },
+      {
+        "who": "Clarice Jensen",
+        "words": [
+          "cello"
+        ],
+        "classes": [
+          "strings"
+        ]
+      },
+      {
+        "who": "James McAlister",
+        "words": [
+          "synthesizer",
+          "percussion",
+          "keyboard",
+          "drum machine programming"
+        ],
+        "classes": [
+          "synth",
+          "drums",
+          "keyboard",
+          "drum machine"
+        ]
+      },
+      {
+        "who": "Yuki Numata Resnick",
+        "words": [
+          "violin"
+        ],
+        "classes": [
+          "strings"
+        ]
+      },
+      {
+        "who": "Jason Treuting",
+        "words": [
+          "percussion"
+        ],
+        "classes": [
+          "drums"
+        ]
+      },
+      {
+        "who": "Bryan Devendorf",
+        "words": [
+          "drum machine programming"
+        ],
+        "classes": [
+          "drum machine"
+        ]
+      },
+      {
+        "who": "Taylor Swift",
+        "words": [
+          "lead vocals"
+        ],
+        "classes": [
+          "vocals"
+        ]
+      }
+    ]
+  }
+}

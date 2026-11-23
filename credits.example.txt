@@ -1,0 +1,5 @@
+# Local credits: --credits FILE. All examples are inactive.
+# Names label audible instruments; credits never invent an unheard instrument.
+# Player 1: vocals, acoustic guitar
+# Player 2: piano, synth
+# bass guitar, drums

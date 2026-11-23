@@ -1,0 +1,5 @@
+# Optional CUDA 12 runtime for faster-whisper on Linux x86_64.
+# Install core/music separately, then select matching CUDA torch/torchaudio
+# wheels from the official PyTorch selector. No other file requires CUDA.
+nvidia-cublas-cu12; sys_platform == 'linux' and platform_machine == 'x86_64'
+nvidia-cudnn-cu12; sys_platform == 'linux' and platform_machine == 'x86_64'

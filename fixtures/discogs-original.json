@@ -1,0 +1,400 @@
+{
+ "search": {
+  "pagination": {
+   "page": 1,
+   "pages": 1,
+   "per_page": 100,
+   "items": 41
+  },
+  "results": [
+   {
+    "id": 664785,
+    "master_id": 664785,
+    "type": "master",
+    "title": "The Dave Brubeck Quartet - Experiments In Time - Vol. 2",
+    "year": "1959",
+    "format": [
+     "Vinyl",
+     "7\"",
+     "EP",
+     "45 RPM",
+     "Stereo"
+    ]
+   },
+   {
+    "id": 110102,
+    "master_id": 110102,
+    "type": "master",
+    "title": "Dave Brubeck Quartet* - Take Five / Blue Rondo A La Turk",
+    "year": "1959",
+    "format": [
+     "Vinyl",
+     "7\"",
+     "Single",
+     "45 RPM"
+    ]
+   },
+   {
+    "id": 270654,
+    "master_id": 270654,
+    "type": "master",
+    "title": "The Dave Brubeck Quartet - Concord On A Summer Night",
+    "year": "1982",
+    "format": [
+     "Vinyl",
+     "LP",
+     "Album"
+    ]
+   },
+   {
+    "id": 34081,
+    "master_id": 34081,
+    "type": "master",
+    "title": "The Dave Brubeck Quartet - Time Out",
+    "year": "1959",
+    "format": [
+     "Vinyl",
+     "LP",
+     "Album",
+     "Mono"
+    ]
+   }
+  ]
+ },
+ "masters": {
+  "34081": {
+   "id": 34081,
+   "title": "Time Out",
+   "year": 1959,
+   "main_release": 12384502,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "tracklist": [
+    {
+     "position": "A3",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": ""
+    }
+   ]
+  },
+  "110102": {
+   "id": 110102,
+   "title": "Take Five / Blue Rondo A La Turk",
+   "year": 1959,
+   "main_release": 3682095,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "tracklist": [
+    {
+     "position": "A",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": "2:50",
+     "extraartists": [
+      {
+       "name": "Paul Desmond",
+       "role": "Written-By",
+       "tracks": ""
+      }
+     ]
+    }
+   ]
+  },
+  "664785": {
+   "id": 664785,
+   "title": "Experiments In Time - Vol. 2",
+   "year": 1959,
+   "main_release": 5492648,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "tracklist": [
+    {
+     "position": "B",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": "",
+     "extraartists": [
+      {
+       "name": "Paul Desmond",
+       "role": "Written-By",
+       "tracks": ""
+      }
+     ]
+    }
+   ]
+  },
+  "270654": {
+   "id": 270654,
+   "title": "Concord On A Summer Night",
+   "year": 1982,
+   "main_release": 2439678,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "tracklist": [
+    {
+     "position": "B2",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": "8:50",
+     "extraartists": [
+      {
+       "name": "Paul Desmond",
+       "role": "Written-By",
+       "tracks": ""
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "releases": {
+  "12384502": {
+   "id": 12384502,
+   "title": "Time Out",
+   "year": 1959,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "formats": [
+    {
+     "name": "Vinyl",
+     "qty": "1",
+     "descriptions": [
+      "LP",
+      "Album",
+      "Mono"
+     ],
+     "text": "Terre Haute Pressing"
+    }
+   ],
+   "extraartists": [
+    {
+     "name": "Paul Desmond",
+     "role": "Alto Saxophone",
+     "tracks": ""
+    },
+    {
+     "name": "Eugene Wright",
+     "role": "Bass",
+     "tracks": ""
+    },
+    {
+     "name": "Joe Morello",
+     "role": "Drums",
+     "tracks": ""
+    },
+    {
+     "name": "Steve Race",
+     "role": "Liner Notes",
+     "tracks": ""
+    },
+    {
+     "name": "Dave Brubeck",
+     "role": "Piano",
+     "tracks": ""
+    },
+    {
+     "name": "Dave Brubeck",
+     "role": "Written-By",
+     "tracks": "A1, A2, B1 to B4"
+    },
+    {
+     "name": "Paul Desmond",
+     "role": "Written-By",
+     "tracks": "A3"
+    }
+   ],
+   "master_id": 34081,
+   "tracklist": [
+    {
+     "position": "A3",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": ""
+    }
+   ]
+  },
+  "3682095": {
+   "id": 3682095,
+   "title": "Take Five / Blue Rondo A La Turk",
+   "year": 1959,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "formats": [
+    {
+     "name": "Vinyl",
+     "qty": "1",
+     "descriptions": [
+      "7\"",
+      "Single",
+      "45 RPM"
+     ],
+     "text": "Bridgeport Pressing"
+    }
+   ],
+   "master_id": 110102,
+   "tracklist": [
+    {
+     "position": "A",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": "2:50",
+     "extraartists": [
+      {
+       "name": "Paul Desmond",
+       "role": "Written-By",
+       "tracks": ""
+      }
+     ]
+    }
+   ]
+  },
+  "5492648": {
+   "id": 5492648,
+   "title": "Experiments In Time - Vol. 2",
+   "year": 1959,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "formats": [
+    {
+     "name": "Vinyl",
+     "qty": "1",
+     "descriptions": [
+      "7\"",
+      "EP",
+      "45 RPM",
+      "Stereo"
+     ]
+    }
+   ],
+   "extraartists": [
+    {
+     "name": "The Dave Brubeck Quartet",
+     "role": "Band",
+     "tracks": ""
+    },
+    {
+     "name": "Eugene Wright",
+     "role": "Bass",
+     "tracks": ""
+    },
+    {
+     "name": "Joe Morello",
+     "role": "Drums",
+     "tracks": ""
+    },
+    {
+     "name": "Cor van Weele",
+     "role": "Photography [Cover]",
+     "tracks": ""
+    },
+    {
+     "name": "Dave Brubeck",
+     "role": "Piano",
+     "tracks": ""
+    },
+    {
+     "name": "Paul Desmond",
+     "role": "Saxophone",
+     "tracks": ""
+    }
+   ],
+   "master_id": 664785,
+   "tracklist": [
+    {
+     "position": "B",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": "",
+     "extraartists": [
+      {
+       "name": "Paul Desmond",
+       "role": "Written-By",
+       "tracks": ""
+      }
+     ]
+    }
+   ]
+  },
+  "2439678": {
+   "id": 2439678,
+   "title": "Concord On A Summer Night",
+   "year": 1982,
+   "artists": [
+    {
+     "name": "The Dave Brubeck Quartet"
+    }
+   ],
+   "formats": [
+    {
+     "name": "Vinyl",
+     "qty": "1",
+     "descriptions": [
+      "LP",
+      "Album"
+     ]
+    }
+   ],
+   "extraartists": [
+    {
+     "name": "William O. Smith",
+     "role": "Clarinet",
+     "tracks": ""
+    },
+    {
+     "name": "Randy Jones (3)",
+     "role": "Drums",
+     "tracks": ""
+    },
+    {
+     "name": "Chris Brubeck",
+     "role": "Guitar, Bass [Electric], Bass Trombone",
+     "tracks": ""
+    },
+    {
+     "name": "Dave Brubeck",
+     "role": "Piano",
+     "tracks": ""
+    }
+   ],
+   "master_id": 270654,
+   "tracklist": [
+    {
+     "position": "B2",
+     "type_": "track",
+     "title": "Take Five",
+     "duration": "8:50",
+     "extraartists": [
+      {
+       "name": "Paul Desmond",
+       "role": "Written-By",
+       "tracks": ""
+      }
+     ]
+    }
+   ],
+   "notes": "Recorded at the Concord Pavilion, on August 8th, 1982 as the closing group of the 14th Concord Jazz Festival."
+  }
+ }
+}

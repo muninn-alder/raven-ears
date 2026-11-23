@@ -1,0 +1,5 @@
+# Optional recognition hints, one token per line; all examples are inactive.
+# --names FILE or $RAVEN_EARS_HOME/names.txt
+# Use only words you intend to retain in local transcripts.
+# Zibble
+# Žibble

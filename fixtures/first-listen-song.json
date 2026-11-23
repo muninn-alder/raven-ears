@@ -1,0 +1,601 @@
+{
+ "schema": 1,
+ "manifest": {
+  "file_sha256": "894e74807fb2106f528aa0af441952451938ea827dbb54beeac51ff8c2d9d27b",
+  "duration_s": 151.5,
+  "duration_reason": "",
+  "ears_version": "60342d1ffeec1974c3099037ef83ba011fb992e5:8049ab45a0dcf37e1afc1034ee29a0138f61c31a0321f2709c7c5a2b9661c19f",
+  "options": {
+   "artist": null,
+   "title": null,
+   "album": null,
+   "no_lyrics": false,
+   "no_lyrics_lookup": true,
+   "no_credits": true,
+   "no_cache": false,
+   "no_instruments": false,
+   "no_singer": false,
+   "no_meter": false,
+   "no_stems_timeline": false,
+   "lyrics_sha256": null,
+   "credits_sha256": null,
+   "names_sha256": null,
+   "device": "auto",
+   "metadata_filename": "sample.mp3",
+   "environment": {
+    "RAVEN_EARS_OFFLINE": "",
+    "RAVEN_NO_CREDITS": "",
+    "RAVEN_NO_LYRICS_LOOKUP": "",
+    "RAVEN_NO_INSTRUMENTS": "",
+    "RAVEN_NO_SIX_STEMS": "",
+    "RAVEN_EARS_LANG": "",
+    "RAVEN_EARS_NAMES_MODE": "",
+    "RAVEN_EARS_WHISPER": "",
+    "WHISPER_MODEL": ""
+   },
+   "lookups": {
+    "credits": false,
+    "lyrics": false
+   }
+  },
+  "heard_at": "2026-11-10T21:45:09.676428+00:00",
+  "passes": {
+   "singer": {
+    "status": "ran",
+    "reason": "",
+    "date": "2026-11-10T21:45:51.899410+00:00",
+    "first_listened": "2026-11-10T21:45:51.899410+00:00",
+    "last_listened": "2026-11-10T21:45:51.899410+00:00",
+    "listen_count": 1,
+    "forwarded_options": {
+     "no_credits": true,
+     "no_lyrics_lookup": true,
+     "device": "auto"
+    }
+   },
+   "music": {
+    "status": "ran",
+    "reason": "",
+    "date": "2026-11-10T21:46:25.907469+00:00",
+    "first_listened": "2026-11-10T21:46:25.907469+00:00",
+    "last_listened": "2026-11-10T21:46:25.907469+00:00",
+    "listen_count": 1,
+    "forwarded_options": {
+     "no_credits": true,
+     "no_lyrics_lookup": true,
+     "device": "auto"
+    }
+   },
+   "harmony": {
+    "status": "ran",
+    "reason": "",
+    "date": "2026-11-10T21:46:37.758337+00:00",
+    "first_listened": "2026-11-10T21:46:37.758337+00:00",
+    "last_listened": "2026-11-10T21:46:37.758337+00:00",
+    "listen_count": 1,
+    "forwarded_options": {
+     "no_credits": true,
+     "no_lyrics_lookup": true,
+     "device": "auto"
+    }
+   }
+  }
+ },
+ "cards": {
+  "singer": {
+   "text": "SINGER.PY  sample.mp3  2:31  (stems cached in 0.0s)\nLYRICS: LRCLIB lookup off; words are Whisper's guesses (rough times)\n  NOTE: lyrics: whisper large-v3 on cuda (float16), no VAD [shared cache]\n  NOTE: lyrics: 9 line(s) kept but marked (unsure), quiet vocals or doubtful Whisper: 0:34 'lem sadu dira peba mode\n            lem dum bud gubur mag buze kof pariped ru selap tara ren'um vinuni'; 0:42 'kevet ve d ripo kof lok radu\n            lem mevi'f noba vu riliro rod d zakot d sab'i noba s rok'; 0:50 'tos lani fu sab'i dobe d vifemo zo den\n            muk fozu lani ru kol sog kof fafe'; 0:56 'Gebozu fikafo kof piru D letu, ran'u momo de nedi' [shared\n            cache]\nSINGER:\n  pitch: median C4 (263 Hz) · comfortable range E3–B4 (19 semitones)\n  highest held notes: B4 at 1:04 (1.1s, pushed hard) · C5 at 1:42 (0.7s, pushed hard) · C5 at 1:58 (0.6s)\n  lowest held notes: D3 at 0:25 · E3 at 0:49\n  pitch arc (median by section): G3 → G3 → E4 → E4 → C4 → C4 · the voice lifts ~9 semitones by 1:15\n  phrase endings: 1 lift, 2 fall, 8 hold\n  sounds the voice makes: Sigh ×1 at 0:27\n  arousal across the song: ▁▃█▇▇▆  (0:00 → 2:31; 0.33 to 0.68; · = no voice) (speech-trained model; read as texture, not a verdict)\n    by section: 0:00=0.33 0:25=0.44 0:50=0.68 1:16=0.66 1:41=0.61 2:06=0.58\n  most intense moment: 1:41–1:46 · 10 dB louder than the voice's median · arousal 0.91 vs 0.57 average (speech-trained model; read as texture, not a verdict), pitch there ~G4\n  overall: arousal 0.57 · dominance 0.56 · valence 0.49 (0-1) (speech-trained model; read as texture, not a verdict)\nINSTRUMENTS (PANNs AudioSet tagger run on each Demucs stem; an estimate, it names the nearest of 527 classes):\n  overall:\n    bass guitar  possibly (score 0.05, 94% of the song)  throughout\n    drum machine possibly (score 0.11, 72% of the song)  0:33–2:21\n    other stem: 100% of its sound did not match a confident name: unclear\n  who is playing ('+ voice' = the vocal stem has level):\n    0:00–0:33  bass guitar, a melodic layer I cannot name (unclear) + voice\n    0:33–2:21  bass guitar, drum machine, a melodic layer I cannot name (unclear) + voice\n    2:21–2:29  silence/unclear\nSTEMS OVER TIME (each stem against its own level; rows are energy, ENTRANCES/EXITS debounced at 4 s):\n  drums  ▁▁▁▁▁▁▁▁▁▁▁▁▁▃██████████████████████▇██████████████████▇▁▁▁▁\n  bass   ▆▆▆▆▆▆▆▆▆▆▆▆▆▆█▇█▇█▇█▇██▇▇▇▇▆▆▆▆▆▇▆██▇▇▇▇▇█▇█▇█▇█▇██▇▇▇▄▁▁▁▁\n  other  ▆▆▆▆▆▆▇▇▇▇▇▇██▅▆▅▆▅▆▇▇▇▇▇▆▇▇▆▆▆▇▇▇█▇▆▆▆▆▇▇▆▇▇▆▆▇███████▇▁▁▁▁\n  vocals ▁▁▁▂▆▆▆▆▆▇▂▁▁▃▇▇▇▇▇▇▇▇▇████▇▇▆▇▆▆▆▇▇██████▇▇█▇▇▇▇▇▇▇▇▇▇▇▁▁▁▁\n         0:00                                                   2:30\nENTRANCES/EXITS:\n  0:00 opens with bass + other\n  0:09 vocals enter\n  0:27 vocals drop out\n  0:29 guitar steps up 51 dB in one go and stays up [guitar stem level]  [instrument tagger]\n  0:34 drums + vocals enter\n  0:34 bass swells 6 dB\n  0:36 other thins 9 dB\n  1:10 bass thins 7 dB\n  1:10 other thins 6 dB\n  1:22 guitar arrives as 2 separate hits (1:22.8, 1:23.2) and holds from 1:24.2, 42 dB up [guitar stem level]  [instrument tagger]\n  1:28 bass swells 6 dB\n  1:28 other thins 8 dB\n  1:45 other thins 7 dB\n  1:58 other swells 7 dB\n  2:07 guitar arrives as 2 separate hits (2:07.0, 2:09.5) and holds from 2:10.5, 32 dB up [guitar stem level]  [instrument tagger]\n  2:20 everything drops out\nMETER: 4 beats per bar; split 2 vs 3 is ambiguous (candidates 4/4 / 12/8) · confidence low (0.06)\n  83 bars tracked, 62% of bars have 4 beats; bar ≈ 2.18s; pulse ≈ 111/min  [beat_this]\n  between-beat onsets: halfway 0.45 vs thirds 0.39; 48% of beats lean to thirds\n  bar length changes across the song: 0.28s → 2.18s → 2.18s\ntimings: stems_total 0.0, stems_cached True, singer 38.9, instruments 0.0, timeline 0.7, meter 0.0\n  STATUS: words: Whisper's guesses (LRCLIB: skipped: LRCLIB lookup off; no lyrics file)\n  STATUS: breath: skipped: the event model does not hear breathing here\n  STATUS: Whisper: skipped: word times supplied\n  STATUS: VS USUAL: skipped: no speaker given\n  STATUS: credits: skipped: disabled\nNOTES: words: Whisper's guesses (LRCLIB: skipped: LRCLIB lookup off; no lyri… · +4 more\nand now, you\n",
+   "json": {
+    "file": "sample.mp3",
+    "duration_s": 151.5
+   },
+   "diagnostics": ""
+  },
+  "music": {
+   "text": "MUSIC: sample.mp3 · 2:32\n  KEY:      C major (no ♯/♭) · tonic fairly clear\n  TEMPO:    112.3 BPM · steady 0.83 · beat strength 5.14x\n  SHAPE:    mid intro → loud 0:09 → loud 0:27 → PEAK loud 0:36 → quiet outro 2:20\n    0:00–0:09  mid    -29.4 dB\n    0:09–0:27  loud   -25.6 dB\n    0:27–0:36  loud   -27.3 dB\n    0:36–2:20  loud   -18.9 dB  <- PEAK\n    2:20–2:32  quiet  -51.0 dB\n  SOUND:    warm (centroid 1975 Hz) · dynamic range 13.7 dB · 83% harmonic / 17% percussive · peak -2.0 dBFS\n  VOCALS:   yes, voice present ~81% of the track (stem holds 28% of the energy) [method: vocal-stem energy] · 0:10–0:27, 0:35–2:20\n  VOCAL:    no clear contrast in breathiness between sections [CPPS 10.9–11.0, HNR 13 dB median]\n  LYRICS: LRCLIB lookup off; words are Whisper's guesses (rough times)\n    [0:09] Lem rada vu s repal, D rader buze mesilulod Lem dononi kof dedit tara\n    [0:15] kof Koz Tep, sab'i bepi fub de vukatip Lel lem fub vepuvul sereve, ve\n    [0:21] kof zot vegu? D zakot N'it bavin ketu lovi, tos lani fu sab'i dobe\n    [0:35] lem sadu dira peba mode lem dum bud gubur mag buze kof pariped ru (unsure: Whisper doubtful)\n    [0:41] selap tara ren'um vinuni kevet ve d ripo kof lok radu lem mevi'f noba (unsure: Whisper doubtful)\n    [0:47] vu riliro rod d zakot d sab'i noba s rok tos lani fu sab'i (unsure: Whisper doubtful)\n    [0:52] dobe d vifemo zo den muk fozu lani ru kol sog kof fafe Gebozu (unsure: Whisper doubtful)\n    [0:58] fikafo kof piru D letu, ran'u momo de nedi D lagago gi dira goruza, (unsure: Whisper doubtful)\n    [1:03] ni D vaz kof samen fo vido D nota Mag vido ru tefe, tos (unsure: Whisper doubtful)\n    [1:09] lani fu sab'i dobe Vido ro lem veru dira nifupeb, bapeme? Zebigi pevulip, mode (unsure: Whisper doubtful)\n    [1:17] mebinuzu mufu Fupaz ne D rav'e fenutap bi's Pupovapa, bi's geka vapopav D vifemo (unsure: Whisper doubtful)\n    [1:28] zo den, muk fozu vu fub ru dol zo rurug Gebozu fikafo kof zot\n    [1:34] lem tinup vope D tuku D lagago gi dira goruza, ni D vaz kof\n    [1:39] samen fo vido D nota Vido ru tefe, tos lani fu sab'i dobe D\n    [1:46] sab'i noba vu fenutap D tara gofo doni ma lani g'i tara vu gi\n    [1:51] ve s vave tifif mufu netamofef top mim gilat netamofef lalunota zakot mipuk d\n    [1:59] pa dedaki dol tos lani fu sab'i dobe mag kof beke zot zozi vu\n    [2:05] zo mepurot kol vu laka vema s kasavidu zedizan geka tara d bip mire\n    [2:13] bute lem deka fekipek de Zakot nuse ne kiv ru bib vu gi Tos\n    [2:19] lani batupe dobe\n  NOTE:     lyrics: whisper large-v3 on cuda (float16), no VAD [shared cache]\n  NOTE:     lyrics: 9 line(s) kept but marked (unsure), quiet vocals or doubtful Whisper: 0:34 'lem sadu dira peba\n            mode lem dum bud gubur mag buze kof pariped ru selap tara ren'um vinuni'; 0:42 'kevet ve d ripo kof lok\n            radu lem mevi'f noba vu riliro rod d zakot d sab'i noba s rok'; 0:50 'tos lani fu sab'i dobe d vifemo zo\n            den muk fozu lani ru kol sog kof fafe'; 0:56 'Gebozu fikafo kof piru D letu, ran'u momo de nedi' [shared\n            cache]\nNOTES: words: Whisper's guesses (LRCLIB: skipped: LRCLIB lookup off; no lyrics file) · all audio stages ran\nand now, you\n",
+   "json": {
+    "stage_status": [
+     {
+      "stage": "decode",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "spectral key",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "tempo",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "sections",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "sound",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "stems",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "vocals",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "pitch front end",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "quality",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "vocal quality",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "beat tracker",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "meter",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "features",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "bass pitch",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "melody",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "downbeats",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "CNN key voter",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "chords",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "key fusion",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "key",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "LRCLIB",
+      "status": "skipped",
+      "kind": "input",
+      "reason": "LRCLIB lookup off",
+      "source": "LRCLIB"
+     },
+     {
+      "stage": "lyrics file",
+      "status": "not-found",
+      "kind": "input",
+      "reason": "no lyrics file"
+     },
+     {
+      "stage": "Whisper",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "words",
+      "status": "ran",
+      "kind": "input",
+      "reason": "Whisper's guesses"
+     }
+    ],
+    "file": "sample.mp3",
+    "duration": 151.5,
+    "key_claim": {
+     "working": "C major",
+     "p": [
+      0.78,
+      0.08
+     ],
+     "top2": [
+      "C major",
+      "F major"
+     ],
+     "signature": "no ♯♭",
+     "sig_p": 0.79,
+     "voters": {
+      "spectral": "C major",
+      "cnn": "C major",
+      "chords": "C major",
+      "bass": "F major",
+      "cadence": "F major"
+     },
+     "dissent": [
+      "bass",
+      "cadence"
+     ],
+     "votes": "spectral C · cnn C · chords C · bass F · cadence F",
+     "relation": "fifth",
+     "state": "clear",
+     "key": "C major",
+     "line": "C major (no ♯♭) · tonic fairly clear",
+     "votes_line": null,
+     "spectral": "C major",
+     "stage_status": [
+      {
+       "stage": "features",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "bass pitch",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "melody",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "downbeats",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "CNN key voter",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "spectral key",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "chords",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "sections",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "key fusion",
+       "status": "ran",
+       "kind": "audio"
+      },
+      {
+       "stage": "key",
+       "status": "ran",
+       "kind": "audio"
+      }
+     ]
+    },
+    "lyrics": [
+     {
+      "t": 9.0,
+      "text": "Lem rada vu s repal, D rader buze mesilulod Lem dononi kof dedit tara"
+     },
+     {
+      "t": 14.8,
+      "text": "kof Koz Tep, sab'i bepi fub de vukatip Lel lem fub vepuvul sereve, ve"
+     },
+     {
+      "t": 20.6,
+      "text": "kof zot vegu? D zakot N'it bavin ketu lovi, tos lani fu sab'i dobe"
+     },
+     {
+      "t": 34.8,
+      "text": "lem sadu dira peba mode lem dum bud gubur mag buze kof pariped ru (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 41.3,
+      "text": "selap tara ren'um vinuni kevet ve d ripo kof lok radu lem mevi'f noba (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 47.2,
+      "text": "vu riliro rod d zakot d sab'i noba s rok tos lani fu sab'i (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 52.5,
+      "text": "dobe d vifemo zo den muk fozu lani ru kol sog kof fafe Gebozu (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 57.6,
+      "text": "fikafo kof piru D letu, ran'u momo de nedi D lagago gi dira goruza, (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 63.4,
+      "text": "ni D vaz kof samen fo vido D nota Mag vido ru tefe, tos (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 69.0,
+      "text": "lani fu sab'i dobe Vido ro lem veru dira nifupeb, bapeme? Zebigi pevulip, mode (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 76.7,
+      "text": "mebinuzu mufu Fupaz ne D rav'e fenutap bi's Pupovapa, bi's geka vapopav D vifemo (unsure: Whisper doubtful)"
+     },
+     {
+      "t": 88.1,
+      "text": "zo den, muk fozu vu fub ru dol zo rurug Gebozu fikafo kof zot"
+     },
+     {
+      "t": 93.6,
+      "text": "lem tinup vope D tuku D lagago gi dira goruza, ni D vaz kof"
+     },
+     {
+      "t": 99.3,
+      "text": "samen fo vido D nota Vido ru tefe, tos lani fu sab'i dobe D"
+     },
+     {
+      "t": 105.5,
+      "text": "sab'i noba vu fenutap D tara gofo doni ma lani g'i tara vu gi"
+     },
+     {
+      "t": 111.2,
+      "text": "ve s vave tifif mufu netamofef top mim gilat netamofef lalunota zakot mipuk d"
+     },
+     {
+      "t": 119.2,
+      "text": "pa dedaki dol tos lani fu sab'i dobe mag kof beke zot zozi vu"
+     },
+     {
+      "t": 124.6,
+      "text": "zo mepurot kol vu laka vema s kasavidu zedizan geka tara d bip mire"
+     },
+     {
+      "t": 132.9,
+      "text": "bute lem deka fekipek de Zakot nuse ne kiv ru bib vu gi Tos"
+     },
+     {
+      "t": 138.8,
+      "text": "lani batupe dobe"
+     }
+    ],
+    "lyrics_align": "LYRICS: LRCLIB lookup off; words are Whisper's guesses (rough times)"
+   },
+   "diagnostics": ""
+  },
+  "harmony": {
+   "text": "HARMONY: sample.mp3 · 2:31\n  NOTE: lyrics: whisper large-v3 on cuda (float16), no VAD [shared cache]\n  NOTE: lyrics: 9 line(s) kept but marked (unsure), quiet vocals or doubtful Whisper: 0:34 'lem sadu dira peba mode\n            lem dum bud gubur mag buze kof pariped ru selap tara ren'um vinuni'; 0:42 'kevet ve d ripo kof lok radu\n            lem mevi'f noba vu riliro rod d zakot d sab'i noba s rok'; 0:50 'tos lani fu sab'i dobe d vifemo zo den\n            muk fozu lani ru kol sog kof fafe'; 0:56 'Gebozu fikafo kof piru D letu, ran'u momo de nedi' [shared\n            cache]\n  NOTE: LYRICS: LRCLIB lookup off; words are Whisper's guesses (rough times)\n\nSOUND (two separate things, kept apart on purpose)\n  low-mid BODY (150–500 Hz): 17% of the energy · TOP (above 4 kHz): 1.5% · centroid 1975 Hz\n\nCHORDS\n  home: C major (no ♯/♭) · tonic fairly clear; ~112 BPM beat-tracker pulse; chords decoded on beat-synced chroma, triads + sevenths, Viterbi-smoothed\n  most time on: IV 25%, Imaj7 20%, IVmaj7 19%, I 17%, vi 9%, V 9%\n  0:00–0:09 [mid intro]: Imaj7 – IV\n  0:09–0:27 [loud]: I – IV\n  0:27–0:36 [loud]: Imaj7 – V – I\n  0:36–2:20 [loud]: I – IVmaj7 – I – IVmaj7 – vi – IV – Imaj7 – V  (×3)\n  2:20–2:32 [quiet outro]: no clear chords\n  ends on V (G); opens on Imaj7\n  notable moves:\n    plagal cadence IV→I (the 'amen' fall)  [0:10, 0:27, 0:44, 1:02, 1:19 +3 more]\n    authentic cadence V→I  [0:35, 1:10, 1:44]\n\nTENSION\n  curve (0–1, per 2 s; harmony-from-home 35%, chroma dissonance 20%, loudness 30%, activity 15%):\n    0:00 ▃▃▄▄▄▅▅▅▅▅▅▅▄▄▄▄▄▄▄▄▅▅▅▅▅▅▅▅▅▅\n    1:00 ▄▄▄▅▅▅▅▅▅▅▅▅▅▅▅▅▅▅▄▄▄▅▅▅▄▅▄▄▄▄\n    2:00 ▅▅▅▅▅▅▄▄▅▄▄▃▂▂▂\n  range 0.29–0.62, peak at 1:24\n  BUILD   0:00–1:24 tension climbs 0.36→0.62 (denser, less settled chroma and harmony pulls from home), unresolved on IVmaj7\n\n\nTIMELINE\n   0:00  opens mid intro, -29 dB\n   0:00  0:00–1:24 tension climbs 0.36→0.62 (denser, less settled chroma and harmony pulls from home), unresolved on IVmaj7\n   0:09  voice enters: 'Lem rada vu s repal, D rader buze mesilulod Lem'\n   0:09  voice: 'Lem rada vu s repal, D rader buze mesilulod Lem'\n   0:09  new section: loud, -26 dB\n   0:10  plagal cadence IV→I (the 'amen' fall)\n   0:10  unexpected I after IV (this song usually goes IV→Imaj7)\n   0:13  unexpected IV after I (this song usually goes I→IVmaj7)\n   0:27  new section: loud, -27 dB\n   0:29  guitar steps up 51 dB in one go and stays up [guitar stem level]\n   0:34  swell: the sound grows 9 dB in a couple of seconds\n   0:35  voice: 'lem sadu dira peba mode lem dum bud gubur mag'\n   0:36  PEAK section: loud, -19 dB\n   0:40  voice: 'buze kof pariped ru selap tara ren'um vinuni kevet ve'\n   1:03  line 'ni D vaz kof samen fo vido D nota Mag': words heavy (-0.66), music not following (lift +0.2)\n   1:15  unexpected IVmaj7 after Imaj7 (this song usually goes Imaj7→V)\n   1:22  guitar arrives as 2 separate hits (1:22.8, 1:23.2) and holds from 1:24.2, 42 dB up [guitar stem level]\n   1:37  line 'lagago gi dira goruza, ni D vaz kof samen fo': words heavy (-0.81), music lifting (lift +0.4, brightness leads)\n   1:40  line 'vido D nota Vido ru tefe, tos lani fu sab'i': words heavy (-0.63), music not following (lift +0.3)\n   2:07  guitar arrives as 2 separate hits (2:07.0, 2:09.5) and holds from 2:10.5, 32 dB up [guitar stem level]\n   2:16  last chord: V (G)\n   2:18  drop-out: the level falls 9 dB and stays down; the band thins\n   2:19  voice: 'batupe dobe'\n   2:20  new section: quiet outro, -51 dB\n\n\nCONTRAST (words vs music)\n  words = local sentiment model (cardiffnlp roberta, line blended with its neighbours, -1..+1); music 'lift' = song-relative z of energy, activity, brightness, harmonic rhythm, minus half of tension. Mode (major/minor) is NOT used; it's a fact, not a mood.\n  1:03 'ni D vaz kof samen fo vido D nota Mag': words heavy (-0.66), music not following (lift +0.2)\n  1:37 'lagago gi dira goruza, ni D vaz kof samen fo': words heavy (-0.81), music lifting (lift +0.4, brightness leads)\n  1:40 'vido D nota Vido ru tefe, tos lani fu sab'i': words heavy (-0.63), music not following (lift +0.3)\n  overall: the words lean heavy (-0.21 avg); words and music mostly run on separate tracks: the music's arc follows its own structure, not the sentences (r=+0.11); 3 distinct lines disagree strongly, out of 30 lines\n\nSURPRISE (where the song breaks its own pattern)\n  0:09 novelty peak, the song's texture (chroma+timbre+level) reshuffles (+2 dB across it, chords IV→I): a section break (expected scaffolding)\n  0:10 I after IV (inside the key but off the path); this song has gone IV→Imaj7 4 times and takes this turn once\n  0:13 IV after I (inside the key but off the path); this song has gone I→IVmaj7 5 times and takes this turn once\n  0:27 novelty peak, the song's texture (chroma+timbre+level) reshuffles (-2 dB across it, chords IV→Imaj7): a section break (expected scaffolding)\n  0:51 novelty peak, the song's texture (chroma+timbre+level) reshuffles (+0 dB across it, chords IVmaj7→IVmaj7): an unscheduled change, not on a section line\n  1:11 novelty peak, the song's texture (chroma+timbre+level) reshuffles (-5 dB across it, chords Imaj7→Imaj7): an unscheduled change, not on a section line\n  1:15 IVmaj7 after Imaj7 (inside the key but off the path); this song has gone Imaj7→V 4 times and takes this turn once\n  1:28 novelty peak, the song's texture (chroma+timbre+level) reshuffles (+4 dB across it, chords IVmaj7→vi): an unscheduled change, not on a section line\n  2:20 novelty peak, the song's texture (chroma+timbre+level) reshuffles (-43 dB across it): a section break (expected scaffolding)\n\nCHILL CANDIDATES (Sloboda 1991; candidates, not verdicts)\n  appoggiaturas (melody leans on a non-chord tone, then steps onto a chord tone; from a pyin pitch track of the vocal stem, cleaner than the mix; treat as hints):\n    0:45  F held 0.4 s over C, then down onto E\n    1:31  B held 0.5 s over F, then up onto C\n    1:50  B held 0.3 s over Fmaj7, then up onto C\n    1:51  B held 0.3 s over Fmaj7, then up onto C\n    1:55  B held 0.3 s over C, then up onto C\n  new or unexpected harmony:\n    0:13  IV after I (diatonic detour)\n    1:15  IVmaj7 after Imaj7 (diatonic detour)\n    0:10  I after IV (diatonic detour)\n  sudden dynamic swells:\n    0:34  +9 dB over about 2.5 s\n  new voice or instrument entering (timbre-novelty proxy; the stem limb has the true entrances):\n    0:09  timbre shifts sharply (+1 dB level change)\n    0:19  timbre shifts sharply (-0 dB level change)\n    0:35  timbre shifts sharply (+9 dB level change)\n\nACHE none found\n  STATUS: words: Whisper's guesses (LRCLIB: skipped: LRCLIB lookup off; no lyrics file)\n  STATUS: credits: skipped: disabled\n  STATUS: all audio stages ran\nNOTES: words: Whisper's guesses (LRCLIB: skipped: LRCLIB lookup off; no lyri… · credits: skipped: disabled · +1 more\nand now, you\n",
+   "json": {
+    "stage_status": [
+     {
+      "stage": "credits",
+      "status": "skipped",
+      "kind": "input",
+      "reason": "disabled"
+     },
+     {
+      "stage": "instruments",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "ache",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "features",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "bass pitch",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "melody",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "downbeats",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "CNN key voter",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "spectral key",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "chords",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "sections",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "key fusion",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "LRCLIB",
+      "status": "skipped",
+      "kind": "input",
+      "reason": "LRCLIB lookup off",
+      "source": "LRCLIB"
+     },
+     {
+      "stage": "lyrics file",
+      "status": "not-found",
+      "kind": "input",
+      "reason": "no lyrics file"
+     },
+     {
+      "stage": "Whisper",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "words",
+      "status": "ran",
+      "kind": "input",
+      "reason": "Whisper's guesses"
+     },
+     {
+      "stage": "tension",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "builds / releases",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "level dips",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "dropouts",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "swells",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "timbre entrances",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "harmonic moves",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "pedals",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "appoggiaturas",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "novelty",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "chord surprises",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "musical lift",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "cadences",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "sentiment",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "word / music contrast",
+      "status": "ran",
+      "kind": "audio"
+     },
+     {
+      "stage": "refrain check",
+      "status": "ran",
+      "kind": "audio"
+     }
+    ],
+    "file": "sample.mp3",
+    "duration": 151.5,
+    "home_key": "C major",
+    "key_verdict": {
+     "working": "C major",
+     "p": [
+      0.78,
+      0.08
+     ],
+     "top2": [
+      "C major",
+      "F major"
+     ],
+     "signature": "no ♯♭",
+     "sig_p": 0.79,
+     "voters": {
+      "spectral": "C major",
+      "cnn": "C major",
+      "chords": "C major",
+      "bass": "F major",
+      "cadence": "F major"
+     },
+     "dissent": [
+      "bass",
+      "cadence"
+     ],
+     "votes": "spectral C · cnn C · chords C · bass F · cadence F",
+     "relation": "fifth",
+     "state": "clear",
+     "key": "C major",
+     "line": "C major (no ♯♭) · tonic fairly clear",
+     "votes_line": null,
+     "spectral": "C major"
+    }
+   },
+   "diagnostics": ""
+  }
+ }
+}

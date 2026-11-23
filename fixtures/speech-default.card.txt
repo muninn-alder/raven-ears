@@ -1,0 +1,31 @@
+CHANNEL  wideband-limited (~7 kHz, e.g. Bluetooth HFP/phone app): treat brightness and tone with care
+  PITCH:   median 164 Hz · range 0.0 st (164–164 Hz) · voiced 100% · phrase ends →2 (last →)
+  EVENTS:  Snort 0:48–0:49 (0.13)
+  BREATH:  skipped: the event model does not hear breathing here
+  ROOM:    nothing stands out
+  PACE:    6 words / 12s ≈ 30 wpm · longest pause 9.5s at 0:03
+  LAUGHS:  none heard · snorts 1 (0:48 (0.13))
+  AFFECT:  arousal 0.45 · dominance 0.53 · valence 0.42 · aro thirds 0.42→0.44→0.50 · val thirds 0.49→0.40→0.36
+  SHAPE:   steady (-22/-22/-22 dB) · 18→0→0 wpm · pitch → (164→164→164 Hz)
+  QUALITY: skipped: synthetic fixture
+  WORDLESS: 57.1s of voice with no words (0:00–0:02, 0:03–0:12, 0:14–1:00) · SILENT: none
+  CONTOUR: 0:00 (1.6s) held near E3 (~164 Hz)
+           0:03 (9.3s) held near E3 (~164 Hz)
+           0:14 (46.3s) held near E3 (~164 Hz)
+  PEAK:    0:00–0:05 · loud -22 dB (note median -22) · arousal 0.45 (note 0.45)
+  EMPHASIS: none stands out, even delivery
+  WORDS:   6 words, 2 phrases
+  [0:00] (voice, no words 1.6 s) ⟪PEAK⟫ Check the signal. ⟪/PEAK⟫ …(9.5 s) (voice, no words 9.3 s)
+  [0:12] Another channel opens. (voice, no words 46.3 s) [snort]
+  TUNE:    semitones from the note median
+  0:02 "…the signal." +0 st →
+  0:12 "…channel opens." +0 st →
+  WORDS vs VOICE: Jev off (TYPESAFE_API_KEY not set)
+  VS USUAL: no speaker given, no comparison
+  STATUS: words: Whisper's guesses
+  STATUS: Whisper: degraded: fell back to CPU int8
+  STATUS: breath: skipped: the event model does not hear breathing here
+  STATUS: quality: skipped: synthetic fixture
+  STATUS: VS USUAL: skipped: no speaker given
+NOTES: Whisper: degraded: fell back to CPU int8 · words: Whisper's guesses · +3 more
+and now, you

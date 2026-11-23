@@ -1,0 +1,2 @@
+# Optional local listening sheets; no models or CUDA dependency.
+matplotlib>=3.6,<4

@@ -1,0 +1,9 @@
+# Core CPU speech; no torch or CUDA dependency. System FFmpeg is also needed.
+# Compatibility ranges, not a tested fresh-install lockfile.
+numpy>=1.26; sys_platform != 'darwin' or platform_machine != 'x86_64'
+numpy>=1.26,<2; sys_platform == 'darwin' and platform_machine == 'x86_64'
+scipy>=1.11
+librosa>=0.10
+soundfile>=0.12
+faster-whisper>=1.1,<2
+# Optional listening sheets: pip install -r requirements-picture.txt
