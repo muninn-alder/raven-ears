@@ -477,6 +477,29 @@ def speech_spectrum(samples, sr):
     return edges / sr, frequencies, (20 * np.log10(np.maximum(amplitude, 1e-5))).T.astype(np.float32)
 
 
+def _spectrum_rms_axis(spec):
+    from matplotlib.ticker import NullLocator
+
+    spec.set_yscale("log")
+    spec.set_yticks([100, 1000, 5000], ["100", "1k", "5k"])
+    spec.yaxis.set_minor_locator(NullLocator())
+    spec.set_ylim(47, 8000)
+    loud = spec.twinx()
+    loud.set_ylim(-100, 0)
+    loud.set_yticks([-80, -40, 0])
+    loud.set_ylabel("RMS (dB)", color=GREEN)
+    loud.tick_params(axis="y", colors=GREEN)
+    return loud
+
+
+def _plot_speech_spectrum(spec, loud, spectrum, times, rms, *, start=0.):
+    if spectrum is not None and spectrum[2].size:
+        edges, frequencies, power = spectrum
+        spec.pcolormesh(start + edges, frequencies, power, cmap="magma",
+                        vmin=-75, vmax=-15, shading="flat", rasterized=True)
+    loud.plot(times, rms, color=GREEN, lw=.55, alpha=.45)
+
+
 def _plotting():
     import matplotlib
     from matplotlib.backends.backend_agg import FigureCanvasAgg
@@ -1072,11 +1095,22 @@ def speech_sheet(data, measured, output, *, title="Speech", by_ear=None):
         Canvas(figure)
         axes = _axes(figure, [2, 1.6, 1.9 if ear else 1.2, 2.1])
         times, rms, f0 = (measured.get(k, []) for k in ("times", "rms_db", "f0"))
-        axes[0].plot(times, rms, color=GREEN, lw=1.3)
-        axes[0].set_ylabel("Energy (dB)")
-        if not len(times):
-            axes[0].text(.01, .5, "No frame energy retained (empty or too short clip)",
-                         transform=axes[0].transAxes, color=MUTED)
+        spectrum = measured.get("spectrum")
+        subtitle = "Listening sheet · existing speech measurements"
+        energy_note = "Energy: the card's RMS"
+        if spectrum is not None and spectrum[2].size:
+            axes[0].set_ylabel("Spectrum (Hz)")
+            loud = _spectrum_rms_axis(axes[0])
+            _plot_speech_spectrum(axes[0], loud, spectrum, times, rms)
+            subtitle = "Listening sheet · speech spectrogram and measured features"
+            rms_note = "green line: measured RMS" if len(times) else "no frame energy retained"
+            energy_note = "Spectrogram: input audio, brighter = stronger · " + rms_note
+        else:
+            axes[0].plot(times, rms, color=GREEN, lw=1.3)
+            axes[0].set_ylabel("Energy (dB)")
+            if not len(times):
+                axes[0].text(.01, .5, "No frame energy retained (empty or too short clip)",
+                             transform=axes[0].transAxes, color=MUTED)
         usual = measured.get("usual_pitch")
         _pitch(axes[1], times, f0, usual=usual)
         usual_note = _usual_band(axes[1], usual, BLUE,
@@ -1110,6 +1144,7 @@ def speech_sheet(data, measured, output, *, title="Speech", by_ear=None):
         axes[3].set_ylabel("Words")
         if not words:
             axes[3].text(.01, .5, "No timed words available", transform=axes[3].transAxes, color=MUTED)
-        return _finish(figure, axes, duration, output, title, "Listening sheet · existing speech measurements",
-                       "Energy: the card's RMS · pitch: measured Hz, log axis; gaps stay empty · hatched = measured silence · labels abbreviated\n"
+        return _finish(figure, axes, duration, output, title, subtitle,
+                       energy_note + " · pitch: measured Hz, log axis; gaps stay empty"
+                       " · hatched = measured silence · labels abbreviated\n"
                        + usual_note)

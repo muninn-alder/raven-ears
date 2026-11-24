@@ -120,14 +120,10 @@ def _timeline_labels(ax, labels, duration):
 def _plot_clip(clip, start, spec, loud, pitch, colour):
     import numpy as np
 
-    spectrum = clip.measured.get("spectrum")
-    if spectrum is not None and spectrum[2].size:
-        edges, frequencies, power = spectrum
-        spec.pcolormesh(start + edges, frequencies, power, cmap="magma",
-                        vmin=-75, vmax=-15, shading="flat", rasterized=True)
     times = start + np.asarray(clip.measured.get("times", []))
     # Plot each clip separately so neither curve bridges a note boundary.
-    loud.plot(times, clip.measured.get("rms_db", []), color=S.GREEN, lw=.55, alpha=.45)
+    S._plot_speech_spectrum(spec, loud, clip.measured.get("spectrum"), times,
+                            clip.measured.get("rms_db", []), start=start)
     pitch.plot(times, clip.measured.get("f0", []), color=colour, lw=.95)
     for a, b in clip.laughs:
         a, b = max(0., a), min(clip.duration, b)
@@ -167,15 +163,7 @@ def conversation_sheet(clips, output, *, stamps=(), include_words=False):
             spec, pitch = axes[1 + 2 * i:3 + 2 * i]
             colour = COLOURS[i % len(COLOURS)]
             spec.set_ylabel(f"{speaker}\nSpectrum (Hz)", color=colour)
-            spec.set_yscale("log")
-            spec.set_yticks([100, 1000, 5000], ["100", "1k", "5k"])
-            spec.yaxis.set_minor_locator(NullLocator())
-            spec.set_ylim(47, 8000)
-            loud = spec.twinx()
-            loud.set_ylim(-100, 0)
-            loud.set_yticks([-80, -40, 0])
-            loud.set_ylabel("RMS (dB)", color=S.GREEN)
-            loud.tick_params(axis="y", colors=S.GREEN)
+            loud = S._spectrum_rms_axis(spec)
             pitch.set_ylabel("Pitch (Hz)", color=colour)
             pitch.set_yscale("log")
             pitch.set_yticks([75, 150, 300, 600], ["75", "150", "300", "600"])

@@ -1136,13 +1136,13 @@ class PictureTests(unittest.TestCase):
 
 
 class PictureDefaultTests(unittest.TestCase):
-    def test_automatic_speech_sheet_keeps_baseline_policy_and_explicit_sheet_is_read_only(self):
+    def test_speech_sheet_never_freezes_the_baseline_only_by_ear_is_read_only(self):
         with tempfile.TemporaryDirectory() as directory, card_fixture() as (audio, *_), \
              patch.object(S, 'speech_sheet', return_value=Path('sheet.png')):
             for env, flags, learns in (
                     ('', [], True), ('1', [], True), ('0', [], True),
-                    ('', ['--no-picture'], True), ('', ['--picture'], False),
-                    ('', ['--picture-out', 'sheet.png'], False),
+                    ('', ['--no-picture'], True), ('', ['--picture'], True),
+                    ('', ['--picture-out', 'sheet.png'], True),
                     ('', ['--by-ear', 'marks.txt'], False),
                     ('', ['--no-baseline-update'], False)):
                 with self.subTest(env=env, flags=flags), \

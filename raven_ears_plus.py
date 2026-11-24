@@ -2303,7 +2303,7 @@ def analyze(audio_path, words=None, speaker=None, *, events=True, affect=True, u
     keep_models : in fast mode, retain Whisper and the CPU tagger for subsequent clips.
     capture_picture : return frame times/RMS/F0 and any usual pitch range for a local sheet,
                       outside the JSON data. Do not update the baseline unless picture_read_only=False.
-    picture_read_only : automatic CLI sheets use False to retain normal voice-note baseline updates.
+    picture_read_only : the CLI passes False for every sheet except --by-ear, so drawing never freezes a baseline.
     capture_spectrum : include a spectrogram from the same decode when capturing a picture.
     separate : try local Demucs stems, or follow RAVEN_EARS_SEPARATE when None.
     """
@@ -2954,8 +2954,10 @@ def main(argv=None):
     if a.serve:
         return serve(sys.stdin, json_output=a.json, **options)
     if picture:
+        options["capture_spectrum"] = True
         options["capture_picture"] = True
-        options["picture_read_only"] = a.picture is True or bool(a.picture_out or a.by_ear)
+        # Drawing never decides what the baseline learns; only --by-ear (a human re-marking an old note) is read-only.
+        options["picture_read_only"] = bool(a.by_ear)
     r = analyze(a.audio, fast=a.fast, **options)
     if a.json:
         from ears_handoff import finish_json  # MORE EARS: handoff inside valid JSON.
