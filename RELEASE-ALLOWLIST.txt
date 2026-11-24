@@ -102,3 +102,6 @@ laugh_models.py
 eval_laughs.py
 test_speech_laughs.py
 test_speech_tune.py
+test_verbatim.py
+test_names_default.py
+test_meter_compound.py

@@ -515,9 +515,10 @@ def names_tag(names=None):
     return hashlib.sha1((names_mode("prompt") + "\n" + "\n".join(names)).encode("utf-8")).hexdigest()[:10] if names else ""
 
 
-def names_mode(default="hotwords"):
-    """'hotwords' or 'prompt'. RAVEN_EARS_NAMES_MODE overrides. Speech defaults to hotwords (if supported); sung words default to 'prompt'.
-    Prompting is a hint, not evidence that a word was heard."""
+def names_mode(default="prompt"):
+    """'hotwords' or 'prompt'. RAVEN_EARS_NAMES_MODE overrides. Both speech and sung words default to 'prompt':
+    on nine real voice notes (24 Nov 2026), hotwords sometimes made large-v3 drop all case and punctuation and invent
+    an ending, and the prompt didn't. Prompting is a hint, not evidence that a word was heard."""
     return os.environ.get("RAVEN_EARS_NAMES_MODE", default)
 
 
