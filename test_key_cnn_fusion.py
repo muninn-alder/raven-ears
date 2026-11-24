@@ -298,6 +298,30 @@ class CNNFusionTests(unittest.TestCase):
                         self.assertNotIn('tonic clear', result['line'])
                         self.assertNotIn('tonic fairly clear', result['line'])
 
+    def test_scattered_independent_voters_cap_tonic_clear(self):
+        # Lucy: the heavy CNN says D, but bass and cadence say G and the melody says A.
+        lucy = next(r for r in rows() if r['title'] == 'Lucy')
+        result = K.verdict(dict(lucy['voters']))
+        self.assertEqual((result['state'], result['key']), ('clear', 'D major'))
+        self.assertIn('tonic fairly clear', result['line'])
+        self.assertNotIn('tonic clear', result['line'])
+        self.assertEqual(result['scattered'], ['bass', 'melody', 'cadence'])
+        # synthetic: three voters in three other key areas against one heavy voter
+        voters = {'cnn': vote(5), 'chords': vote(5), 'bass': vote(10), 'melody': vote(9), 'cadence': vote(10)}
+        self.assertIn('tonic fairly clear', K.verdict(voters)['line'])
+        # voters naming the relative key use the same notes: not scatter
+        calm = {'cnn': vote(5), 'chords': vote(5), 'bass': vote(5), 'melody': vote(5), 'cadence': vote(5)}
+        self.assertIn('tonic clear', K.verdict(calm)['line'])
+        relative = dict(calm, bass=vote(14), cadence=vote(14), melody=vote(14))
+        self.assertIn('tonic clear', K.verdict(relative)['line'])
+        self.assertNotIn('scattered', K.verdict(relative))
+
+    def test_bench_songs_with_agreeing_voters_keep_tonic_clear(self):
+        for row in rows():
+            if row['title'] in ('Last Kiss', 'Money', 'Fell On Black Days', 'Solsbury Hill', 'Homewrecker'):
+                with self.subTest(song=row['title']):
+                    self.assertIn('tonic clear', K.verdict(dict(row['voters']))['line'])
+
     def test_fixture_contains_only_titles_and_numeric_vectors(self):
         for row in rows():
             self.assertEqual(set(row), {'title', 'cnn_raw_madmom_order', 'voters',

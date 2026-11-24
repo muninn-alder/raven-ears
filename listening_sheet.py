@@ -914,6 +914,34 @@ def _usual_pitch_limits(lo, hi, usual):
     return lo, hi
 
 
+PITCH_FLOOR = 65.      # ordinary voices keep this floor; the tracker's own fmin is 65
+PITCH_HARD_FLOOR = 50.
+
+
+def _voice_pitch_floor(f0_series, usual=None, base=PITCH_FLOOR):
+    """Lowest axis edge that shows every measured voice in full.
+
+    Ordinary voices keep `base`; a deeper one pulls the floor down to just
+    under its measured low (5th percentile, or the lowest frame if that is
+    lower), never below PITCH_HARD_FLOOR.
+    """
+    import numpy as np
+    lo = base
+    for series in f0_series:
+        f0 = np.asarray(series if series is not None else [], dtype=float)
+        f0 = f0[np.isfinite(f0) & (f0 > 0)]
+        if f0.size:
+            lo = min(lo, np.percentile(f0, 5) * .9, f0.min() * .97)
+    if usual and "notes" in usual and usual["low_hz"] > 0:
+        lo = min(lo, usual["low_hz"] * .95)
+    return max(PITCH_HARD_FLOOR, lo)
+
+
+def _pitch_ticks(lo, hi, wanted=(50, 75, 150, 300, 600)):
+    """The same 75/150/300/600 ticks as ever, plus 50 when a deep voice reaches it."""
+    return [t for t in wanted if lo * 1.02 <= t <= hi]
+
+
 def _usual_band(ax, usual, colour, *, missing):
     if not usual or "reason" in usual:
         reason = usual["reason"] if usual else missing

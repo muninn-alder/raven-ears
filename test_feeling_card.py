@@ -726,6 +726,37 @@ class FeelingTests(unittest.TestCase):
         self.assertEqual(F._changed_word([lines[0], lines[0]]), '')
         self.assertEqual(F._changed_word([slim.Lyric(0, 'Oh yes'), slim.Lyric(20, 'Oh no')]), '')
 
+    def test_band_dropout_after_a_sung_line_outranks_peak_and_small_appoggiatura(self):
+        # All Too Well (10 Minute Version): both listeners leaned in at 5:47.
+        spans = [(343.0, 347.5), (380.0, 385.0)]
+        events = [(0.0, 0, 'bass guitar alone for 0:18', 'entrance'),
+                  (347.0, 0, 'drums + vocals drop out', 'entrance'),
+                  (349.0, 0, 'bass guitar alone for 0:10', 'entrance'),
+                  (394.0, 0, 'drums drop out', 'entrance')]
+        found = F.band_dropouts(events, spans)
+        self.assertEqual([(f[0], f[1]) for f in found], [(347.0, 10)])
+        self.assertEqual(found[0][2], 'drums + vocals drop out → bass guitar alone for 0:10')
+        # Not under any sung line, a single stem, or under 2 s: not a candidate.
+        self.assertEqual(F.band_dropouts([(100., 0, 'bass + drums drop out', 'entrance')], spans), [])
+        self.assertEqual(F.band_dropouts([(345., 0, 'drums drop out', 'entrance')], spans), [])
+        self.assertEqual(F.band_dropouts(
+            [(345., 0, 'bass + drums drop out', 'entrance'), (346., 0, 'bass enters', 'entrance')], spans), [])
+        # A drop with no band return is the ending, not a lean-in.
+        self.assertEqual(F.band_dropouts([(346., 0, 'everything drops out', 'entrance')], spans), [])
+        # Ruin The Friendship 2:13 (drop, bass back at 2:36) and 2:46 (guitar thins 21 dB).
+        events = [(133.0, 0, 'bass + drums drop out', 'entrance'), (156.0, 0, 'bass guitar enters (likely)', 'entrance'),
+                  (166.0, 3, 'acoustic guitar (likely) thins 21 dB', 'swell'), (50., 3, 'drums thins 24 dB', 'swell')]
+        found = F.band_dropouts(events, [(134.0, 137.0), (162.0, 168.0), (45., 55.)])
+        self.assertEqual([f[0] for f in found], [133.0, 166.0])
+
+    def test_lean_in_puts_the_dropout_first_and_keeps_three_items(self):
+        song = example()
+        song['cards']['singer']['text'] += '  2:10 bass + drums enter\n'
+        text = L.render(song, 'first-listen')[0]
+        lean = ' '.join(text.split('WHERE TO LEAN IN', 1)[1].split('HUM ALONG', 1)[0].split())
+        self.assertTrue(lean.startswith('1:39 bass + drums drop out · 2:33 most intense moment'), lean)
+        self.assertNotIn('1:04 bass + drums enter', lean)  # the cap of three held
+
     def test_old_bundles_and_long_abc_stay_read_only(self):
         song = example()
         song['cards']['singer']['json'] = None

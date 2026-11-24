@@ -121,6 +121,63 @@ def _event_key(label):
     return slim.clean(label), tuple(sorted(qualifiers))
 
 
+def _clock_seconds(stamp):
+    parts = [int(x) for x in stamp.split(':')]
+    return parts[0] * 60 + parts[1]
+
+
+def band_dropouts(events, spans):
+    """Moments where the band falls away at or just after a sung line and one part
+    (or near-silence) is left for 2+ s. Saved events only; nothing is measured.
+
+    events: (t, priority, label, kind). spans: (start, end) of sung lines.
+    Returns [(t, hold_s, label)], strongest first (longest hold, then earliest).
+    """
+    def sung(t):
+        return any(a - 1.5 <= t <= b + 3 for a, b in spans)
+
+    band_in = sorted(e[0] for e in events if e[3] == 'entrance'
+                     and re.search(r'\b(enters?|returns?)\b', e[2]) and 'vocals' not in e[2]
+                     and ' alone for ' not in e[2])
+    alones = []
+    for t, _, label, kind in events:
+        m = re.search(r' alone for (\d+:\d\d)\b', label)
+        if kind == 'entrance' and m and _clock_seconds(m[1]) >= 2:
+            alones.append((t, _clock_seconds(m[1]), label))
+    found, used = [], set()
+    for t, _, label, kind in sorted(events):
+        if not sung(t):
+            continue
+        if kind == 'entrance' and re.search(r'\bdrops? out\b', label) and ' alone for ' not in label:
+            stems = re.split(r' \+ ', re.sub(r'\s*\(.*?\)', '', label.split(' drop')[0]))
+            follow = next((a for a in alones if 0 <= a[0] - t <= 4 and a[0] not in used), None)
+            bandwide = ('everything' in label or 'band' in label
+                        or len({x.strip() for x in stems if x.strip() != 'vocals'}) >= 2
+                        or ('bass' in stems and 'drums' in stems))
+            if follow:
+                used.add(follow[0])
+                found.append((t, follow[1], _short_note(label) + ' → ' + _short_note(follow[2])))
+                continue
+            if bandwide:
+                later = next((b for b in band_in if b > t), None)
+                # No band return after it means the song's ending, not a lean-in.
+                if later is not None and later - t >= 2:
+                    found.append((t, min(later - t, 12), _short_note(label)))
+        elif kind == 'space' and 'band drops out, voice alone' in label:
+            m = re.match(r'\(([\d.]+) s', label)
+            if m and float(m[1]) >= 2:
+                found.append((t, float(m[1]), _short_note(label)))
+        elif kind == 'swell':
+            m = re.search(r'\bthins (\d+(?:\.\d+)?) dB', label)
+            if m and float(m[1]) >= 15 and not re.match(r'(vocals|drums|bass)\b', label):
+                found.append((t, 6, _short_note(label)))  # no hold measured: below a held drop-out
+    for t, dur, label in alones:
+        if t not in used and sung(t):
+            found.append((t, dur, label))
+    found.sort(key=lambda f: (-min(f[1], 12), f[0]))
+    return found
+
+
 def stem_rows(card, data, status):
     """Read the singer's measured rows, with a text fallback for older cards."""
     if not _eligible(('stems', 'stems timeline'), card, data, status):
@@ -710,10 +767,23 @@ def render(summary, cards, analyses, statuses, hook, melody=None, title=None):
         emit('  [no saved lyric or event rows]')
 
     lean = []
+    # Two listeners (All Too Well 5:47, Ruin The Friendship 2:13 / 2:46): the band
+    # dropping out under or right after a sung line, one part left holding, is
+    # what lands. It outranks the speech-trained peak and small appoggiaturas.
+    spans = []
+    for i, r in enumerate(lyrics):
+        if r.no_voice:
+            continue
+        end = ends.get(lyric_key(r.t, r.text), lyrics[i + 1].t if i + 1 < len(lyrics) else r.t + 5)
+        spans.append((r.t, end))
+    dropouts = band_dropouts(events, spans)[:2]
+    for t, _, label in sorted(dropouts):
+        lean.append(slim.clock(t) + ' ' + label)
     if peak_time:
         t = slim.seconds(peak_time[0])
         wordless = any(e[3] == 'wordless' and abs(e[0] - t) <= 2 for e in events)
-        lean.append(slim.clock(t) + (' wordless ' if wordless else ' ') + peak_label)
+        if not any(abs(d[0] - t) <= 2 for d in dropouts):
+            lean.append(slim.clock(t) + (' wordless ' if wordless else ' ') + peak_label)
     if chills:
         t, label = chills[0]  # Existing block order, not a newly measured ranking.
         lean.append(slim.clock(t) + ' ' + _short_note(label))
@@ -757,6 +827,9 @@ def render(summary, cards, analyses, statuses, hook, melody=None, title=None):
 
     emit('')
     key = pick('KEY: ')
+    if key and eligible('harmony', 'key changes'):
+        import key_changes
+        key = key_changes.tonic_ambiguity(key, (data['harmony'].get('key_change_scan') or {}).get('section_tonics'))
     meter = pick('METER: ')
     if not meter and eligible('singer', 'meter', 'beat tracker'):
         import meter_trust

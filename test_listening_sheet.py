@@ -1122,6 +1122,52 @@ class PictureTests(unittest.TestCase):
         with patch.object(S, "_save", side_effect=inspect):
             C.conversation_sheet(clips, self.output, stamps=stamps)
 
+    def _voiced(self, hz, n=60):
+        t = np.arange(n) * .05
+        return dict(times=t, rms_db=np.full(n, -30.), f0=hz * (1 + .08 * np.sin(t * 3)))
+
+    def test_deep_voice_lowers_pitch_axis_floor_and_ordinary_voice_keeps_it(self):
+        clips = [C.Clip("deep", 3., self._voiced(65.), [], "", []),
+                 C.Clip("usual", 3., self._voiced(180.), [], "", [])]
+        save = S._save
+        seen = {}
+
+        def inspect(figure, output):
+            deep, usual = figure.axes[2], figure.axes[4]
+            seen["floors"] = (deep.get_ylim()[0], usual.get_ylim()[0])
+            seen["lowest"] = np.nanmin(deep.lines[0].get_ydata())
+            figure.canvas.draw()
+            seen["ticks"] = [t.get_text() for t in usual.get_yticklabels()]
+            return save(figure, output)
+
+        with patch.object(S, "_save", side_effect=inspect):
+            C.conversation_sheet(clips, self.output)
+        self.assertLess(seen["floors"][0], seen["lowest"])
+        self.assertGreaterEqual(seen["floors"][0], S.PITCH_HARD_FLOOR)
+        self.assertEqual(seen["floors"][1], 65.)
+        self.assertEqual(seen["ticks"], ["75", "150", "300", "600"])
+        self.assertEqual(S._voice_pitch_floor([[20.]]), S.PITCH_HARD_FLOOR)
+
+    def test_dense_two_clip_words_row_stays_readable(self):
+        import re
+        vocab = "so what did you think about the whole thing yesterday honestly".split()
+        words = [(vocab[i % len(vocab)], .2 + i / 3., .45 + i / 3.) for i in range(88)]
+        clips = [C.Clip("a", 30., {}, [], "", words), C.Clip("b", 30., {}, [], "", words)]
+        save = S._save
+        texts = []
+
+        def inspect(figure, output):
+            figure.canvas.draw()
+            lane, = [ax for ax in figure.axes if ax.get_ylabel() == "Words"]
+            texts.extend(t.get_text() for t in lane.texts if t.get_text())
+            return save(figure, output)
+
+        with patch.object(S, "_save", side_effect=inspect):
+            C.conversation_sheet(clips, self.output, include_words=True)
+        real = [t for t in texts if re.fullmatch(r"[a-z]+", t) and t in vocab]
+        self.assertGreater(len(real), 60)
+        self.assertEqual([t for t in texts if "\u2026" in t], [])
+
     def test_missing_matplotlib_prints_one_clear_line_after_card(self):
         with patch.dict(sys.modules, {"matplotlib": None}):
             self.assertEqual(S.attempt(S.song_sheet, None, None, None, None, self.output),

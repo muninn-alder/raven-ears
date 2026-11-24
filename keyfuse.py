@@ -39,6 +39,7 @@ _PITCH_NAME = r"[A-G][#b♯♭]?"
 WEIGHTS = {"cnn": 10.0, "spectral": 0.5, "chords": 0.7, "bass": 0.3, "cadence": 0.2, "melody": 0.15}
 CLEAR_P, CLEAR_MARGIN = 0.55, 0.25          # a "confident" tonic needs this much posterior and lead
 VERY_CLEAR_P = 0.85
+SCATTER_VOTERS = 3                            # this many non-CNN voters naming a different key AREA caps `tonic clear` at `fairly clear`
 SPAN = 6.0                                    # no voter may put a key more than this many nats below its own favourite
 
 
@@ -548,6 +549,18 @@ def fuse(voters, weights=None):
     return P / P.sum(), used
 
 
+def apply_section_split(claim, split):
+    """Section-level evidence (key_changes.section_tonics) says the home is split: a `clear` verdict must not claim it.
+    Returns a new claim; the key stays as the working key and only the words change."""
+    if not claim or not split or not split.get("split"):
+        return claim
+    import key_changes
+    out = dict(claim, section_split=dict(keys=split["keys"], shares=split.get("shares")))
+    if out.get("line"):
+        out["line"] = key_changes.tonic_ambiguity(out["line"], split)
+    return out
+
+
 def mirex_score(est, ref):
     return {"same": 1.0, "fifth": 0.5, "relative": 0.3, "parallel": 0.2}.get(relation(est, ref), 0.0)
 
@@ -576,6 +589,12 @@ def verdict(voters, weights=None):
     sh = area(k1) == area(k2)
     if p1 >= CLEAR_P and margin >= CLEAR_MARGIN:
         how = "tonic clear" if p1 >= VERY_CLEAR_P else "tonic fairly clear"
+        # A tonic is not "clear" when the independent voters scatter: the sum is dominated by one heavy voter.
+        # (a voter naming the relative key uses the same notes: that is a mode question, not scatter)
+        scattered = [n for n in used if n != "cnn" and area(tops[n]) != a1]
+        if how == "tonic clear" and len(scattered) >= SCATTER_VOTERS:
+            how = "tonic fairly clear"
+            out["scattered"] = scattered
         out.update(state="clear", key=key_name(k1), line=f"{key_name(k1)} ({sig_text(k1)}) · {how}")
     elif sh:
         rel_ = " or ".join(key_name(k) for k in sorted((k1, k2), key=lambda k: k >= 12))

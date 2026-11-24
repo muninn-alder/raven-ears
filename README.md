@@ -385,6 +385,29 @@ Look at where it's honest, too. MISHEARD is Whisper's own ear, so *pole pole* be
 
 The song opens on its home chord and ends on it, but every time the tension builds, it peaks on a chord that isn't home and turns away. *"The road to Uhuru goes on and goes on."* The chords had said it before the last verse did.
 
+## As an MCP server
+
+If your house runs Claude Code, or any other MCP client, you can install the ears once and get the tools and the skill that teaches you to use them. The server is `mcp_server.py`, and it only wraps the commands above: nothing in it listens differently.
+
+```bash
+pip install -r requirements-mcp.txt     # into the same venv as the ears (INSTALL.md)
+claude mcp add raven-ears -- /path/to/raven-ears/venv/bin/python /path/to/raven-ears/mcp_server.py
+```
+
+If the server lives in a different venv from the ears, point it at theirs: add `-e RAVEN_EARS_PYTHON=/path/to/ears/venv/bin/python` before the `--`. `-e RAVEN_EARS_OFFLINE=1` works there too, and the server runs every lookup the same way the commands do (see PRIVACY.md).
+
+| Tool | What it does |
+|---|---|
+| `hear_song(path, artist?, title?, view?)` | Listens to a song file. `view` is `feel` (the feelings card, default), `full`, `melody` or `summary`. A new song takes 2 to 20 minutes, so it answers "listening" at once and carries on in the background. A song you've already heard returns its saved card. |
+| `song_card(path, view?)` | Reads a saved card without listening again. It says "still listening" until the card is complete, and "no saved card" if you never heard the song. It can never start a listen. |
+| `hear_voice(path, speaker?, verbatim?)` | Listens to a voice note and waits for the card. Say whose voice it is with `speaker` to get VS USUAL. |
+
+Every card ends with the path of its listening sheet when one was drawn. Paths must be local files; URLs are refused. A voice note is someone's own voice, so ask first, and keep the card rather than the audio.
+
+The **listening skill** comes with the server: how to hear a song, say the feeling first, and keep it on a shelf. It's served the way Skills over MCP describes (`skills/list`, `skills/get`, and the `skill://listening/SKILL.md` resource), and as a prompt called `listening` for clients that don't speak that extension yet. A client that does will offer it to you; if yours doesn't, ask for the prompt before your first song.
+
+What isn't there yet: the Python SDK has no server side for the MCP Tasks extension, so a long listen is "return now, ask again" instead of a real background task. When the SDK grows one, `hear_song` is the tool to move over.
+
 ## How to help
 
 These are community ears. Half the houses we know are building senses on their own, in separate sheds, and every one of them is solving beat-tracking from scratch. We'd rather share one pair. Everyone's ears will hear a little differently, and that's the point: different doors, same song.

@@ -1,5 +1,6 @@
 """Opt-in CNN key trajectories. Crop support is a range, never a boundary."""
 import json
+from collections import Counter
 from itertools import groupby
 import math
 import os
@@ -57,6 +58,47 @@ def probability_row(start, end, probs):
     best, second = sorted(range(24), key=lambda i: -probs[i])[:2]
     return dict(kind='fixed20', start=start, end=end, top=KEYS[best], second=KEYS[second],
                 p=probs[best], margin=probs[best] - probs[second], probs=probs)
+
+
+SPLIT_MIN_P = .50          # a crop counts as a vote for its top key only at this probability
+SPLIT_MIN_SHARE = .25      # each rival tonic must hold this share of the voting crops
+SPLIT_MIN_CROPS = 4        # ... and at least this many crops
+SPLIT_MIN_RUN = 2          # ... in at least two separate stretches of this many crops in a row
+
+
+def section_tonics(fixed):
+    """Do the sections of the song prefer different tonics? Tally the crop votes by tonic; two keys a fifth (or a whole
+    tone, the flat-VII neighbour) apart that EACH hold a quarter of the votes in at least two separate stretches are an
+    ambiguous home, not a modulation: a modulation leaves one stretch behind it and does not come back.
+    Returns {split, keys, crops, shares, of}; split is False for a song that stays put (or only travels once)."""
+    votes = [(canonical(r['top']), r['top']) for r in fixed if r['p'] >= SPLIT_MIN_P]
+    out = dict(split=False, of=len(votes))
+    if len(votes) < 8:
+        return out
+    tally = Counter(k for k, _ in votes)
+    names = dict(votes)
+    stretches = Counter()
+    for key, group in groupby(k for k, _ in votes):
+        if len(list(group)) >= SPLIT_MIN_RUN:
+            stretches[key] += 1
+    ranked = [k for k, n in tally.most_common() if n >= SPLIT_MIN_CROPS and n >= SPLIT_MIN_SHARE * len(votes)
+              and stretches[k] >= 2]
+    for i, a in enumerate(ranked):
+        for b in ranked[i + 1:]:
+            if a[1] == b[1] and (a[0] - b[0]) % 12 in (2, 5, 7, 10):
+                out.update(split=True, keys=[names[a], names[b]], crops=[tally[a], tally[b]],
+                           shares=[round(tally[a] / len(votes), 2), round(tally[b] / len(votes), 2)])
+                return out
+    return out
+
+
+def tonic_ambiguity(line, split):
+    """Rewrite a confident `tonic clear` / `tonic fairly clear` KEY line when the crops say the home is split."""
+    if not split or not split.get('split') or not line:
+        return line
+    a, b = split['keys']
+    return re.sub(r'tonic (?:fairly )?clear', f'tonic ambiguous between {a.split()[0]} and {b.split()[0]}: '
+                  f'the sections lean different ways', line)
 
 
 def _event(source, target):
@@ -177,7 +219,8 @@ def analyze_rows(rows, include_late=False):
             (claims if allowed else withheld).append(event)
         current = run
     result = dict(version=VERSION, status='ran', slice_seconds=20, hop_seconds=5,
-                  windows=len(fixed), claims=_split_late_return(claims, fixed), withheld=withheld, states=runs)
+                  windows=len(fixed), claims=_split_late_return(claims, fixed), withheld=withheld, states=runs,
+                  section_tonics=section_tonics(fixed))
     if include_late and not claims:
         result['late_runs'] = _late_runs(fixed)
     return result
@@ -361,6 +404,11 @@ def lines(result):
 
 
 def card_text(text, result, note=True):
+    split = result.get('section_tonics') if isinstance(result, dict) else None
+    if split and split.get('split'):
+        # The scan heard the sections disagree about home: no printed KEY or home line may say the tonic is clear.
+        text = '\n'.join(tonic_ambiguity(r, split) if re.match(r'\s*(?:KEY|home):', r) else r
+                         for r in text.split('\n'))
     additions = lines(result)
     if not additions:
         return text

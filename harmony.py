@@ -2104,6 +2104,8 @@ def run(path, want_lyrics=True, use_cache=True, lyric_lines=None, key_changes=Fa
         import key_changes as KC
         change_scan = KC.scan(path, dur, cp if use_cache else None)
         ST.mark('key changes', change_scan['status'], change_scan.get('reason', ''))
+        import keyfuse as KF
+        verdict = KF.apply_section_split(verdict, (change_scan or {}).get('section_tonics'))
     kinfo = reentry_key_changes(path, kinfo, F, dur, glob)
     kinfo = modal_key_areas(kinfo, glob, evs)
     # HONEST CARD: establish home before reporting a departure from it.

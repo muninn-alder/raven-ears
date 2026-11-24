@@ -117,6 +117,37 @@ def _timeline_labels(ax, labels, duration):
     return lanes
 
 
+WORD_LANES = 5
+
+
+def _word_lanes(ax, words, duration, lanes=WORD_LANES):
+    """Whole words only, packed by real width; a word that fits no lane keeps just its tick.
+
+    The shared `_labels` slots each word by its neighbours' start times, which
+    on a dense two-clip sheet leaves two characters and turns nearly every
+    label into an ellipsis.
+    """
+    ax.set_ylim(-.9, lanes - .2)
+    ax.set_yticks([])
+    renderer = ax.figure.canvas.get_renderer()
+    available = ax.bbox.width
+    ends = [-float("inf")] * lanes
+    for start, end, text, _likely in sorted((w for w in words if 0 <= w[0] <= duration), key=lambda w: w[0]):
+        text = " ".join(str(text).split())
+        x = start / max(duration, .1) * available
+        ax.plot([start, start], [-.75, -.45], color=S.INK, lw=.8, alpha=.7)
+        if not text:
+            continue
+        artist = ax.text(start, 0, text, fontsize=10, color=S.INK, va="center", clip_on=True)
+        width = artist.get_window_extent(renderer).width
+        lane = next((i for i, e in enumerate(ends) if x >= e + 5), None)
+        if lane is None or x + width > available:
+            artist.remove()
+            continue
+        ends[lane] = x + width
+        artist.set_position((start, lanes - 1 - lane))
+
+
 def _plot_clip(clip, start, spec, loud, pitch, colour):
     import numpy as np
 
@@ -148,9 +179,12 @@ def conversation_sheet(clips, output, *, stamps=(), include_words=False):
         usual = clip.measured.get("usual_pitch")
         if usual and (clip.speaker not in usual_by_speaker or "reason" in usual):
             usual_by_speaker[clip.speaker] = usual
+    f0_by_speaker = {}
+    for clip in clips:
+        f0_by_speaker.setdefault(clip.speaker, []).append(clip.measured.get("f0"))
     heights = [1.] + [part for _ in speakers for part in (1.8, 1.1)]
     if include_words:
-        heights.append(1.6)
+        heights.append(2.0)
     context, Figure, Canvas = S._plotting()
     with context:
         figure = Figure(figsize=(S.WIDTH / 150, S.HEIGHT / 150), dpi=150)
@@ -166,10 +200,12 @@ def conversation_sheet(clips, output, *, stamps=(), include_words=False):
             loud = S._spectrum_rms_axis(spec)
             pitch.set_ylabel("Pitch (Hz)", color=colour)
             pitch.set_yscale("log")
-            pitch.set_yticks([75, 150, 300, 600], ["75", "150", "300", "600"])
-            pitch.yaxis.set_minor_locator(NullLocator())
             usual = usual_by_speaker.get(speaker)
-            pitch.set_ylim(*S._usual_pitch_limits(65, 600, usual))
+            lo, hi = S._usual_pitch_limits(S._voice_pitch_floor(f0_by_speaker[speaker], usual), 600, usual)
+            ticks = S._pitch_ticks(lo, hi)
+            pitch.set_yticks(ticks, [f"{t:g}" for t in ticks])
+            pitch.yaxis.set_minor_locator(NullLocator())
+            pitch.set_ylim(lo, hi)
             missing = "no speaker identified" if speaker == "unknown" else "speech measurements unavailable"
             usual_notes.append(f"{speaker} · " + S._usual_band(pitch, usual, colour, missing=missing))
             panels[speaker] = (spec, loud, pitch, colour)
@@ -195,7 +231,7 @@ def conversation_sheet(clips, output, *, stamps=(), include_words=False):
         if include_words:
             words = [(start + a, start + b, word, False)
                      for clip, start in zip(clips, starts) for word, a, b in clip.words]
-            S._labels(axes[-1], words, duration, lanes=4)
+            _word_lanes(axes[-1], words, duration)
             axes[-1].set_ylabel("Words")
             if not words:
                 axes[-1].text(.01, .5, "No timed words available", transform=axes[-1].transAxes, color=S.MUTED)

@@ -39,6 +39,61 @@ def engine_result():
                 key_change_scan=scan)
 
 
+def alternating(plan, p=.8):
+    """Rows for a song whose sections lean different ways: plan = [(key, crops in a row), ...]."""
+    rows, start = [], 0
+    for key, n in plan:
+        for _ in range(n):
+            rows.append(row(start, key, p))
+            start += 5
+    return rows
+
+
+class TonicAmbiguityTests(unittest.TestCase):
+    LUCY = [('A major', 5), ('D major', 5), ('A major', 3), ('D major', 4), ('A major', 5), ('D major', 7)]
+
+    def test_sections_that_prefer_a_fifth_apart_split_the_home(self):
+        split = K.analyze_rows(alternating(self.LUCY))['section_tonics']
+        self.assertTrue(split['split'])
+        self.assertEqual(sorted(split['keys']), ['A major', 'D major'])
+        # the two keys use the same notes (A mixolydian is D major's scale): this is not a modulation
+        self.assertEqual(K.analyze_rows(alternating(self.LUCY))['claims'], [])
+
+    def test_a_song_that_stays_or_travels_once_is_not_split(self):
+        for plan in ([('C major', 12)], [('C major', 8), ('Eb major', 8)], [('C major', 8), ('G major', 8)],
+                     [('C major', 6), ('A minor', 6), ('C major', 6)]):
+            with self.subTest(plan=plan):
+                self.assertFalse(K.analyze_rows(alternating(plan))['section_tonics']['split'])
+
+    def test_unsure_crops_do_not_vote(self):
+        self.assertFalse(K.analyze_rows(alternating(self.LUCY, p=.4))['section_tonics']['split'])
+
+    def test_clear_wording_becomes_honest_and_nothing_else_changes(self):
+        split = K.analyze_rows(alternating(self.LUCY))['section_tonics']
+        said = K.tonic_ambiguity('D major (2\u266f) \u00b7 tonic clear', split)
+        self.assertIn('tonic ambiguous between D and A', said)
+        self.assertNotIn('tonic clear', said)
+        self.assertEqual(K.tonic_ambiguity(said, split), said)
+        self.assertEqual(K.tonic_ambiguity('D major \u00b7 tonic fairly clear', None), 'D major \u00b7 tonic fairly clear')
+        self.assertEqual(K.tonic_ambiguity('D major \u00b7 tonic clear', dict(split=False)), 'D major \u00b7 tonic clear')
+
+    def test_card_text_and_claim_both_drop_tonic_clear_for_a_split_song(self):
+        import keyfuse
+        result = K.analyze_rows(alternating(self.LUCY))
+        text = 'MUSIC: Invented \u00b7 3:00\n  KEY: D major (2\u266f) \u00b7 tonic clear\n  TEMPO: 96\n  home: D major \u00b7 tonic clear; x\n'
+        rendered = K.card_text(text, result)
+        self.assertNotIn('tonic clear', rendered)
+        self.assertEqual(rendered.count('tonic ambiguous between D and A'), 2)
+        self.assertIn('TEMPO: 96', rendered)
+        stable = K.analyze_rows(alternating([('C major', 12)]))
+        self.assertEqual(K.card_text(text, stable), text)
+        claim = dict(state='clear', key='D major', line='D major (2\u266f) \u00b7 tonic clear')
+        guarded = keyfuse.apply_section_split(claim, result['section_tonics'])
+        self.assertEqual(guarded['key'], 'D major')
+        self.assertIn('tonic ambiguous between D and A', guarded['line'])
+        self.assertIs(keyfuse.apply_section_split(claim, stable['section_tonics']), claim)
+
+
 class KeyChangesTests(unittest.TestCase):
     def test_terminal_reprise_splits_a_crop_jump(self):
         reprise = run(80, 'Bb major', .8)

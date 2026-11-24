@@ -958,6 +958,10 @@ def render_first_listen(cards, analyses=None, pass_statuses=None):
                     body = re.sub(r",\s*see METER\b", "", body)
                 else:
                     body = body.split(" · meter ")[0]
+            if label == 'KEY' and eligible('harmony', ('key changes',)):
+                import key_changes
+                body = key_changes.tonic_ambiguity(
+                    body, (data['harmony'].get('key_change_scan') or {}).get('section_tonics'))
             if not FAILURE.search(body):
                 picks.append(label + ": " + body)
                 if label == 'KEY' and eligible('harmony', ('key changes',)):
