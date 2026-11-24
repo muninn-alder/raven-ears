@@ -2,6 +2,16 @@
 
 Windows users need WSL (Ubuntu recommended); native Windows is not supported. Run these commands inside WSL.
 
+**Calling the ears from PowerShell.** Running Python or the scripts straight from PowerShell can carry the Windows PATH into Linux, so the venv and FFmpeg go missing. Put a tiny wrapper inside Linux and call that instead (Deneb Cassanos found this on a from-scratch WSL install, 24 November 2026):
+
+```sh
+#!/usr/bin/env bash
+# inside WSL, e.g. ~/bin/ears  (then: chmod +x ~/bin/ears)
+cd /home/YOU/raven-ears && . venv/bin/activate && exec python listen.py "$@"
+```
+
+From PowerShell: `wsl -- /home/YOU/bin/ears /mnt/c/Users/YOU/Music/song.mp3`. Windows drives appear under `/mnt/c/`.
+
 Use Python 3.12 and FFmpeg (both `ffmpeg` and `ffprobe` on PATH). Python 3.14 is
 **unverified** for this dependency set; a system with only 3.14 can use the
 no-sudo route below. No GPU is required. See PRIVACY.md before using song metadata.
