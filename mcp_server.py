@@ -28,6 +28,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import threading
 import time
 
 HERE = Path(__file__).resolve().parent
@@ -206,6 +207,9 @@ def start_listen(path, artist=None, title=None):
     finally:
         log.close()
     _PROCS[key] = proc
+    # Reap it when it ends. Otherwise it stays a zombie until somebody asks song_card, and
+    # anything waiting on its pid (kill -0) waits forever.
+    threading.Thread(target=proc.wait, name=f"reap-{proc.pid}", daemon=True).start()
     _write_job(key, {"state": "started", "started": time.time(), "pid": proc.pid})
     return proc
 

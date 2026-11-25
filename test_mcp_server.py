@@ -8,7 +8,9 @@ import hashlib
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
+import time
 import unittest
 from unittest import mock
 
@@ -26,6 +28,9 @@ class FakeProc:
         self.code, self.pid = code, 4242
 
     def poll(self):
+        return self.code
+
+    def wait(self, timeout=None):
         return self.code
 
 
@@ -138,6 +143,19 @@ class BackgroundStateMachine(Base):
         with mock.patch("subprocess.Popen") as popen:
             mcp_server.hear_song_text(str(self.song))
         popen.assert_not_called()
+
+    def test_the_child_is_reaped_when_it_ends_without_anyone_asking(self):
+        # Muninn, 25 Nov 2026: a finished listen stayed <defunct>, so kill -0 on its pid waited forever.
+        with mock.patch.object(mcp_server, "song_argv", return_value=[sys.executable, "-c", "pass"]):
+            proc = mcp_server.start_listen(str(self.song))
+        for _ in range(100):
+            try:
+                os.kill(proc.pid, 0)
+            except ProcessLookupError:
+                break
+            time.sleep(0.05)
+        else:
+            self.fail("the finished listen was left as a zombie")
 
     def test_finished_job_serves_the_saved_card_with_the_sheet(self):
         proc = FakeProc()
