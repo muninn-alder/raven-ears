@@ -56,8 +56,8 @@ class VerbatimTests(unittest.TestCase):
 
     def test_style_is_joined_to_a_names_prompt(self):
         kw, _ = run({'RAVEN_EARS_VERBATIM': 'true'}, {'initial_prompt': 'Zibble.'})
-        self.assertTrue(kw['initial_prompt'].startswith(R.VERBATIM_STYLE))
-        self.assertTrue(kw['initial_prompt'].endswith('Zibble.'))
+        self.assertTrue(kw['initial_prompt'].startswith('Zibble.'))      # names first: the tail survives truncation
+        self.assertTrue(kw['initial_prompt'].endswith(R.VERBATIM_STYLE))
         self.assertNotIn('hotwords', kw)
 
     def test_flag_is_parsed_and_sets_env(self):
@@ -92,3 +92,76 @@ class VerbatimStyleTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class PromptBudgetTests(unittest.TestCase):
+    """Whisper keeps only the LAST 223 prompt tokens; the style must be the tail and a trim must be said."""
+
+    class FakeTok:                                  # one token per whitespace/comma-separated word
+        def encode(self, text, add_special_tokens=False):
+            return SimpleNamespace(ids=text.replace(",", " ").split())
+
+    def model(self):
+        return SimpleNamespace(hf_tokenizer=self.FakeTok(), max_length=448)
+
+    def test_short_prompt_is_untouched_apart_from_order(self):
+        import lyrics_shared as LS
+        p, note = LS.fit_prompt(self.model(), ["Zibble", "Aoife"], "Umm, like, you know.")
+        self.assertEqual(p, "Zibble, Aoife. Umm, like, you know.")
+        self.assertIsNone(note)
+        self.assertEqual(LS.fit_prompt(self.model(), ["Zibble"])[0], "Zibble.")   # names-only: same as before
+
+    def test_long_style_plus_names_keeps_style_and_says_so(self):
+        import lyrics_shared as LS
+        style = " ".join(f"s{i}" for i in range(200))
+        names = [f"n{i}" for i in range(30)]
+        p, note = LS.fit_prompt(self.model(), names, style)
+        self.assertTrue(p.endswith(style))
+        self.assertLessEqual(len(p.replace(",", " ").split()), 223)
+        self.assertIn("names prompt trimmed", note)
+        self.assertIn("of 30 names dropped", note)
+        self.assertIn("223", note)
+        self.assertTrue(p.startswith("n0, n1"))     # names drop from the END of the list
+
+    def test_style_alone_over_budget_is_trimmed_and_reported(self):
+        import lyrics_shared as LS
+        p, note = LS.fit_prompt(self.model(), ["A"], " ".join(f"w{i}" for i in range(300)))
+        self.assertEqual(len(p.split()), 223)
+        self.assertIn("style prompt trimmed, 77 tokens over", note)
+
+    def test_names_only_over_budget_is_trimmed_and_reported(self):
+        import lyrics_shared as LS
+        notes = []
+        model = SimpleNamespace(hf_tokenizer=self.FakeTok(), max_length=448, transcribe=lambda y, initial_prompt=None: 0)
+        names = [f"n{i} x y z" for i in range(100)]
+        nk = LS.whisper_name_kwargs(model, names, mode="prompt", notes=notes)
+        self.assertLessEqual(len(nk["initial_prompt"].replace(",", " ").split()), 223)
+        self.assertTrue(notes and "names prompt trimmed" in notes[0])
+
+    def test_no_tokenizer_means_no_trim(self):
+        import lyrics_shared as LS
+        p, note = LS.fit_prompt(SimpleNamespace(), ["A", "B"], "style")
+        self.assertEqual((p, note), ("A, B. style", None))
+
+    def test_verbatim_kwargs_puts_style_last_and_notes_trim(self):
+        names = [f"n{i}" for i in range(30)]
+        style = " ".join(f"s{i}" for i in range(200))
+        notes = []
+        with patch.object(R, 'verbatim_style', return_value=style):
+            kw = R.verbatim_kwargs({'initial_prompt': ', '.join(names) + '.'}, self.model(), names, notes)
+        self.assertTrue(kw['initial_prompt'].endswith(style))
+        self.assertTrue(any('names prompt trimmed' in n for n in notes))
+
+    def test_real_whisper_tokenizer_if_cached(self):
+        try:
+            from faster_whisper import WhisperModel
+            m = WhisperModel("large-v3", device="cpu", compute_type="int8", local_files_only=True)
+        except Exception as e:
+            self.skipTest(f"real tokenizer unavailable offline ({type(e).__name__})")
+        import lyrics_shared as LS
+        names = [f"Zibblewick{i}" for i in range(30)]
+        style = ("Umm, let me think like, hmm... okay so here's what I'm, like, thinking, you know? " * 8)[:600]
+        p, note = LS.fit_prompt(m, names, style)
+        self.assertTrue(p.endswith(style))
+        self.assertLessEqual(LS._token_counter(m)(p), 223)
+        self.assertIn("names prompt trimmed", note)

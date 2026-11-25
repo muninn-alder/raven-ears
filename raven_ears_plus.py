@@ -536,12 +536,21 @@ def verbatim_on():
     return os.environ.get("RAVEN_EARS_VERBATIM", "").strip().lower() in ("1", "true", "yes", "on")
 
 
-def verbatim_kwargs(nk=None):
-    """transcribe() kwargs for verbatim mode. The disfluent style text is the initial_prompt, joined to a names
-    initial_prompt when names are delivered that way; hotwords stay separate."""
+def verbatim_kwargs(nk=None, model=None, names=None, notes=None):
+    """transcribe() kwargs for verbatim mode. The disfluent style text is the initial_prompt, joined after a names
+    initial_prompt when names are delivered that way (names first: Whisper keeps only the LAST 223 prompt tokens,
+    so the style must be the tail). With `model` and `names` the prompt is fitted to that token budget and a trim
+    is said in `notes`; hotwords stay separate."""
     kw = dict(VERBATIM_KWARGS)
     names_prompt = (nk or {}).get("initial_prompt")
-    kw["initial_prompt"] = verbatim_style() + (" " + names_prompt if names_prompt else "")
+    style = verbatim_style()
+    if model is not None and (names or not names_prompt):
+        import lyrics_shared as LS
+        kw["initial_prompt"], note = LS.fit_prompt(model, names if names_prompt else [], style)
+        if note and notes is not None and note not in notes:
+            notes.append(note)
+    else:
+        kw["initial_prompt"] = (names_prompt + " " if names_prompt else "") + style
     return kw
 
 
@@ -595,19 +604,22 @@ def _whisper_words(y16: np.ndarray, notes, *, fast=False, keep_model=False):
             try:                                    # names list: hotwords (or a short initial_prompt)
                 import lyrics_shared as _LS
                 names = _LS.effective_names()
-                nk = _LS.whisper_name_kwargs(model, names)
+                nn = []
+                nk = _LS.whisper_name_kwargs(model, names, notes=nn)
             except Exception:
-                nk = {}
+                nk, nn = {}, []
             if nk:
                 note = ST.whisper_names_note(len(names))
                 if note not in notes:
                     notes.append(note)
             tk = dict(vad_filter=True, condition_on_previous_text=False)
             if verbatim_on():
-                tk.update(verbatim_kwargs(nk))
+                tk.update(verbatim_kwargs(nk, model, names, notes))
+                nn = []                             # the verbatim fit speaks for the names prompt
                 note = "words: verbatim mode (disfluent style prompt, tuned VAD, silence hallucination guard)"
                 if note not in notes:
                     notes.append(note)
+            notes.extend(n for n in nn if n not in notes)
             tk.update({k: v for k, v in nk.items() if k != "initial_prompt" or "initial_prompt" not in tk})
             segs, _info = model.transcribe(y16, language=os.environ.get("RAVEN_EARS_LANG", "en"),
                                            word_timestamps=True, **tk)

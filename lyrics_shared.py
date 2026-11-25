@@ -522,9 +522,64 @@ def names_mode(default="prompt"):
     return os.environ.get("RAVEN_EARS_NAMES_MODE", default)
 
 
-def whisper_name_kwargs(model, names=None, mode=None):
+def prompt_token_budget(model):
+    """How many initial_prompt tokens Whisper really keeps: faster-whisper takes the LAST max_length // 2 - 1
+    (223 of 448) and silently drops the head."""
+    try:
+        return int(getattr(model, "max_length", 448)) // 2 - 1
+    except (TypeError, ValueError):
+        return 223
+
+
+def _token_counter(model):
+    """Count tokens the way faster-whisper does (encode(" " + text)), using the loaded model's own tokenizer.
+    None when the model carries no tokenizer (then nothing can be measured, and nothing is trimmed)."""
+    tok = getattr(model, "hf_tokenizer", None)
+    if tok is None or not hasattr(tok, "encode"):
+        return None
+    try:
+        tok.encode(" x", add_special_tokens=False)
+    except Exception:
+        return None
+    return lambda text: len(tok.encode(" " + text.strip(), add_special_tokens=False).ids)
+
+
+def fit_prompt(model, names, style="", budget=None):
+    """Assemble an initial_prompt of names (first) then `style` (last, because the tail survives) inside Whisper's
+    token budget. Over budget, names are dropped from the end of the list first; only if the style alone is over
+    is the style cut (at a word boundary, from its end). Returns (prompt, note_or_None).
+    With no tokenizer on the model the prompt is assembled untrimmed."""
+    names = list(names or [])
+    budget = prompt_token_budget(model) if budget is None else budget
+    join = lambda ns: ", ".join(ns) + "." if ns else ""
+    build = lambda ns, st: " ".join(x for x in (join(ns), st) if x)
+    count = _token_counter(model)
+    if count is None or count(build(names, style)) <= budget:
+        return build(names, style), None
+    note = None
+    words = style.split()
+    if style and count(style) > budget:
+        lo, hi = 0, len(words)                     # most words that fit on their own
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            lo, hi = (mid, hi) if count(" ".join(words[:mid])) <= budget else (lo, mid - 1)
+        over = count(style) - budget
+        style = " ".join(words[:lo])
+        note = f"style prompt trimmed, {over} tokens over (Whisper keeps {budget} prompt tokens)"
+        return build([], style), note
+    lo, hi = 0, len(names)                          # most names that fit beside the style
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        lo, hi = (mid, hi) if count(build(names[:mid], style)) <= budget else (lo, mid - 1)
+    what = "to keep the verbatim style" if style else "to fit"
+    note = (f"names prompt trimmed: {len(names) - lo} of {len(names)} names dropped {what} "
+            f"(Whisper keeps {budget} prompt tokens)")
+    return build(names[:lo], style), note
+
+
+def whisper_name_kwargs(model, names=None, mode=None, notes=None):
     """kwargs for model.transcribe: `hotwords` if asked for and this faster-whisper has it, else a short
-    `initial_prompt` (comma-separated names)."""
+    `initial_prompt` (comma-separated names), trimmed to Whisper's token budget (said in `notes`, never silent)."""
     names = effective_names() if names is None else names
     if not names:
         return {}
@@ -537,7 +592,10 @@ def whisper_name_kwargs(model, names=None, mode=None):
     if mode == "hotwords" and "hotwords" in params:
         return {"hotwords": ", ".join(names)}
     if "initial_prompt" in params:
-        return {"initial_prompt": ", ".join(names) + "."}
+        prompt, note = fit_prompt(model, names)
+        if note and notes is not None and note not in notes:
+            notes.append(note)
+        return {"initial_prompt": prompt}
     return {}
 
 
@@ -872,7 +930,7 @@ def transcribe(path, notes):
 
     nk = {}
     try:
-        nk = whisper_name_kwargs(model, names, mode=names_mode("prompt"))
+        nk = whisper_name_kwargs(model, names, mode=names_mode("prompt"), notes=notes)
         if nk:
             notes.append(whisper_names_note(len(names)))
         segs, _ = model.transcribe(y16, language=lang, word_timestamps=True, vad_filter=False,
